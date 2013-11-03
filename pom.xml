@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+ http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>packt-book</groupId>
+    <artifactId>programming-map-reduce-with-scalding</artifactId>
+    <version>0.1</version>
+    <!--<packaging>jar</packaging>-->
+    <packaging>pom</packaging>
+
+    <name>tbd</name>
+    <description>tbd</description>
+
+    <modules>
+        <module>chapter1</module>
+        <module>chapter2</module>
+        <module>chapter3</module>
+        <!--<module>chapter4</module>-->
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <apacheCommonMath.version>2.2</apacheCommonMath.version>
+        <apachevelocity.version>1.7</apachevelocity.version>
+        <apache-httpclient.version>4.3</apache-httpclient.version>
+        <apache-fluent.version>4.3</apache-fluent.version>
+        <commonschain.version>1.2</commonschain.version>
+        <common-lang.version>2.3</common-lang.version>
+        <commons-io.version>2.4</commons-io.version>
+        <cglib.version>2.2.2</cglib.version>
+        <edu.ucar.grib.version>4.3.18</edu.ucar.grib.version>
+        <edu.ucar.netcdf.version>4.3.18</edu.ucar.netcdf.version>
+        <gson.version>2.2.4</gson.version>
+        <jedis.version>2.1.0</jedis.version>
+        <httpClient.version>4.0-beta2</httpClient.version>
+        <javaxmail.version>1.4</javaxmail.version>
+        <javaxactivation.version>1.1-rev-1</javaxactivation.version>
+        <jedis.version>2.1.0</jedis.version>
+        <junit.version>4.11</junit.version>
+        <jodaTime.version>2.1</jodaTime.version>
+        <joda.version>2.3</joda.version>
+        <jsi.version>1.0.0</jsi.version>
+        <mongo-java-driver>2.10.1</mongo-java-driver>
+        <mongo-morphia.version>0.105</mongo-morphia.version>
+        <nosqlunit-mongodb.version>0.7.7</nosqlunit-mongodb.version>
+        <org.springframework.version>3.1.0.RELEASE</org.springframework.version>
+        <PngEncoder.version>2.0.2</PngEncoder.version>
+        <scala-library.version>2.10.2</scala-library.version>
+        <servlet-api-version>3.1.0</servlet-api-version>
+        <simpleLatLng.version>1.3.0</simpleLatLng.version>
+        <slf4j-api.version>1.7.5</slf4j-api.version>
+        <spring-javaconfig.version>1.0.0.m3</spring-javaconfig.version>
+        <trove4j.version>2.0.2</trove4j.version>
+    </properties>
+
+    <!-- Repositories should be picked up by parent pom file -->
+    <!-- Only ext-release-local should be defined here -->
+
+    <dependencies>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-compiler</artifactId>
+            <version>2.10.2</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+</project>

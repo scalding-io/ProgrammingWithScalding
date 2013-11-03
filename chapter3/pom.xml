@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <packaging>jar</packaging>
-    <artifactId>chapter2</artifactId>
+    <artifactId>chapter3</artifactId>
     <version>0</version>
 
     <repositories>
@@ -73,6 +73,12 @@
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-common</artifactId>
             <version>2.0.0-cdh4.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.cloudphysics</groupId>
+            <artifactId>jerkson_2.10</artifactId>
+            <version>0.6.3</version>
         </dependency>
 
     </dependencies>
