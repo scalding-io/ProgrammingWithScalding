@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <packaging>jar</packaging>
-    <artifactId>chapter3</artifactId>
+    <artifactId>chapter4</artifactId>
     <version>0</version>
 
     <repositories>
@@ -32,11 +32,6 @@
             <id>conjars.org</id>
             <url>http://conjars.org/repo</url>
         </repository>
-        <!-- Scalavro-core depends on spray.io:spray-json -->
-        <repository>
-            <id>spray.io</id>
-            <url>http://spray.github.com/spray/api/spray-json/</url>
-        </repository>
     </repositories>
 
     <dependencies>
@@ -47,14 +42,26 @@
         </dependency>
 
         <dependency>
-            <groupId>com.twitter</groupId>
-            <artifactId>scalding-core_2.10</artifactId>
-            <version>0.9.0rc4</version>
+            <groupId>cascading</groupId>
+            <artifactId>cascading-core</artifactId>
+            <version>2.1.6</version>
         </dependency>
         <dependency>
+            <groupId>cascading</groupId>
+            <artifactId>cascading-local</artifactId>
+            <version>2.1.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cascading</groupId>
+            <artifactId>cascading-hadoop</artifactId>
+            <version>2.1.6</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.twitter</groupId>
-            <artifactId>scalding-avro_2.10</artifactId>
-            <version>0.9.0rc4</version>
+            <artifactId>scalding-core_2.10</artifactId>
+            <version>0.9.0rc1</version>
         </dependency>
 
         <dependency>
@@ -62,11 +69,11 @@
             <artifactId>hadoop-core</artifactId>
             <version>2.0.0-mr1-cdh4.0.0</version>
         </dependency>
-<!--        <dependency>
+        <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-common</artifactId>
             <version>2.0.0-cdh4.0.0</version>
-        </dependency> -->
+        </dependency>
 
         <dependency>
             <groupId>com.cloudphysics</groupId>
@@ -74,31 +81,20 @@
             <version>0.6.3</version>
         </dependency>
 
-        <!-- Following 4 libraries for Avro support -->
+        <!-- For Scala add joda-convert as well -->
         <dependency>
-            <groupId>cascading.avro</groupId>
-            <artifactId>avro-scheme</artifactId>
-            <version>2.1.1</version>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.3</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.avro</groupId>
-            <artifactId>avro</artifactId>
-            <version>1.7.4</version>
-            <!-- <scope>provided</scope> -->
+            <groupId>org.joda</groupId>
+            <artifactId>joda-convert</artifactId>
+            <version>1.5</version>
         </dependency>
-        <dependency>
-            <groupId>cascading.avro</groupId>
-            <artifactId>avro-scheme</artifactId>
-            <version>2.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.gensler</groupId>
-            <artifactId>scalavro-core_2.10</artifactId>
-            <version>0.6.0</version>
-        </dependency>
+
 
     </dependencies>
-
 
     <!-- Profiles
     <profiles>
@@ -187,42 +183,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-
-            <plugin>
-                <groupId>org.apache.avro</groupId>
-                <artifactId>avro-maven-plugin</artifactId>
-                <version>1.7.4</version>
-                <executions>
-                    <execution>
-                        <id>schemas</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>schema</goal>
-                        </goals>
-                        <configuration>
-                            <sourceDirectory>src/main/avro/</sourceDirectory>
-                            <outputDirectory>src/main/java/</outputDirectory>
-                            <!--   <testSourceDirectory>${project.basedir}/src/test/avro/</testSourceDirectory>
-                             <testOutputDirectory>${project.basedir}/src/test/java/</testOutputDirectory> -->
-                            <stringType>String</stringType>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>generate-avro-sources</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>idl-protocol</goal>
-                        </goals>
-                        <configuration>
-                            <sourceDirectory>src/main/avroidl</sourceDirectory>
-                            <outputDirectory>src/main/java/</outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-
         </plugins>
 
         <pluginManagement>

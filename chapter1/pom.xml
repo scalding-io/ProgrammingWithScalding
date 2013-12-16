@@ -5,8 +5,8 @@
  http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.company</groupId>
-    <artifactId>scala-hello-world</artifactId>
+    <groupId>packt-book</groupId>
+    <artifactId>chapter1</artifactId>
     <version>0.1</version>
     <packaging>jar</packaging>
 

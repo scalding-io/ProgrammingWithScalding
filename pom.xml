@@ -11,7 +11,7 @@
     <!--<packaging>jar</packaging>-->
     <packaging>pom</packaging>
 
-    <name>tbd</name>
+    <name>Programming Map-Reduce with Scalding</name>
     <description>tbd</description>
 
     <modules>
@@ -19,8 +19,23 @@
         <module>chapter2</module>
         <module>chapter3</module>
         <module>chapter4</module>
+        <module>chapter6</module>
+        <module>chapter8</module>
         <!--<module>chapter4</module>-->
     </modules>
+
+    <!-- Repositories -->
+    <repositories>
+        <repository>
+            <id>conjars.org</id>
+            <url>http://conjars.org/repo</url>
+        </repository>
+        <repository>
+            <id>cloudera-cdh4</id>
+            <name>artifactory.dev.bigdata.bskyb.com-releases</name>
+            <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+        </repository>
+    </repositories>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -56,18 +71,32 @@
         <slf4j-api.version>1.7.5</slf4j-api.version>
         <spring-javaconfig.version>1.0.0.m3</spring-javaconfig.version>
         <trove4j.version>2.0.2</trove4j.version>
+
+        <typesafe.config.version>1.0.0</typesafe.config.version>
+        <maven-scala-plugin.version>2.15.2</maven-scala-plugin.version>
+        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.6</maven.compiler.target>
+        <maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
     </properties>
 
     <!-- Repositories should be picked up by parent pom file -->
     <!-- Only ext-release-local should be defined here -->
 
     <dependencies>
+        <!--
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-compiler</artifactId>
             <version>2.10.2</version>
             <scope>compile</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.typesafe</groupId>
+            <artifactId>config</artifactId>
+            <version>${typesafe.config.version}</version>
+        </dependency>
+        -->
     </dependencies>
 
 </project>

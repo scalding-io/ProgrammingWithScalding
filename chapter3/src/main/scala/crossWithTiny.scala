@@ -21,5 +21,6 @@ class crossWithTiny(args: Args) extends Job(args) {
     IterableSource[(String, Int)](moviesWatchedPipe, ('userId,'movieId_))
 
   val result =  movieMetadataPipe.crossWithTiny(movieWatchedPipe)
-  .write(Tsv("Output-crossWithTiny"))
+    .debug
+    .write(Tsv("Output-crossWithTiny"))
 }

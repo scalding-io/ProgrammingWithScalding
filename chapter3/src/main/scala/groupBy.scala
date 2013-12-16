@@ -65,11 +65,12 @@ class groupBy(args: Args) extends Job(args) {
       .debug
       .write(Tsv("Output-sortBy", writeHeader=true))
 
+  // TODO create a unit-test on what happend when we take more than exists
   val take =
     IterableSource[(String, Int, String)](kidsList, ('kid, 'age, 'fruits))
       .flatMap('fruits -> 'fruit) { text : String => text.split(",") }
       .discard('fruits)
-      .groupAll { group => group.take(2) }
+      .groupAll { group => group.sortBy('age).take(2) }
       .debug
       .write(Tsv("Output-take", writeHeader=true))
 
