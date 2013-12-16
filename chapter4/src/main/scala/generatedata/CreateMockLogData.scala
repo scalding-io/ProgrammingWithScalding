@@ -10,26 +10,33 @@ import org.joda.time.DateTime
  * of 'Programming Map-Reduce in Scalding'
  *
  * @author Antonios Chalkiopoulos - Antwnis@gmail.com
+ *
+ * @example java -cp chapter4-0-jar-with-dependencies.jar -Xmx10G com.twitter.scalding.Tool generatedata.CreateMockLogData --num.of.lines 35000000 --local
+ *          Given that you have sufficient memory the 5GB file should be ready in 15-20 minutes
  */
 class CreateMockLogData(args: Args) extends Job(args) {
 
   // This is the schema of the data
-  val logSchema = List ('datetime, 'user, 'activity, 'data, 'session, 'location, 'response, 'device, 'error, 'server)
+  val logSchema = List ('datetime, 'user, 'activity, 'data, 'session, 'location, 'response, 'device, 'error)
 
   /**
    * Let's generate file log_file.tsv
+   *
+   * By default this will generate 0.5 GB data -> 3.5 Million lines - and requires ~ 1 GB Ram
+   * To generate 5 GByte -> 35.000.000 log lines - you will need a bigger Heap Space
    */
-  val numberOfLines = 100000
+  val numberOfLines = args.optional("num.of.lines").getOrElse("3500000").toInt
   val aList = (1 to numberOfLines).toList
   val rawLogsPipe =
     IterableSource[Int](aList, 'numbers)
-      .mapTo('datetime, 'user, 'activity, 'data, 'device)
+      .mapTo(logSchema)
         // We use the method 'generateFakeData'
         { x:Int => generateFakeData(x) }
       .write(Tsv("log_file.tsv"))
 
   /**
    * Following block of code is used to generate a random log line
+   * ('datetime, 'user, 'activity, 'data, 'session, 'location, 'response, 'device, 'error)
    */
   val random = new scala.util.Random
   def generateFakeData( x:Int ) = {
@@ -37,20 +44,24 @@ class CreateMockLogData(args: Args) extends Job(args) {
     val datetime = new DateTime(1388534400L*1000 + random.nextInt(86400*1000)).toString("yyyy-MM-dd'T'HH:mm:ss.SSSZZ") // Let's assume the ISO8601 is used
     // Assume that we will generate logs for 100 users
     val user = x % 100
-    // Assume that 3 types of events are logged: login, readArticle and streamContent
-    val activity = List("login","stream","readArticle").get(random.nextInt(3))
+    // Assume that 3 types of events are logged: login (5%), readArticle (80%) and streamVideo (15%)
+    val r = random.nextInt(100)
+    val activity = if (r < 5) "login" else if (r<85) "readArticle" else "streamVideo"
     // Column 'data holds information regarding the specific activity
     val data = generateData(activity)
+    val session = java.util.UUID.randomUUID.toString
     // Simulate a a random location, assuming that 60% of our users live in New York, 35% live in London
     val location = generateRandomLocation(x)
-
-    val device_type = List("ipad","iphone","xbox","ps3","pc","android").get(random.nextInt(6))
+    val response = (random.nextInt(250) + 20) + " msec"
+    val device = List("ipad","iphone","xbox","ps3","pc","android").get(x % 6)
+    // 1 in 100.000 requests results into some error message
+    val r2 = random.nextInt(100000)
+    val error = if (r2==0) "Error in API call" else ""
     // Return a fake log-line as a tuple with the expected schema
     // Unlike Java, in Scala we don't need to use the 'return' keyword,
     // the last line of a method is actually our return statement
-    (datetime, "user-"+user , activity, location, device_type )
+    (datetime, user, activity, data, session, location, response, device, error)
   }
-
 
   /**
    * In this method we will assume for the sake of the simulation that
@@ -85,14 +96,11 @@ class CreateMockLogData(args: Args) extends Job(args) {
       "Successful login - User subscription: 1234567 valid for 20 days"
     } else if (activity == "readArticle") {
       // Let's assume that 10 articles exist for each subcategory
-      "article/" + contentTypes.get(random.nextInt(25)) + "/" + random.nextInt(10)
-      "/articles/sports/"
+      "article/" + contentTypes.get(random.nextInt(20)) + "/" + random.nextInt(10)
     } else {
-      ""
+      // Let's assume that 10 videos exist for each subcategory
+      "video/" + contentTypes.get(random.nextInt(20)) + "/" + random.nextInt(10)
     }
   }
 
-
-
 }
-
