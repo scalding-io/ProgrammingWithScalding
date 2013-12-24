@@ -35,6 +35,11 @@
             <name>artifactory.dev.bigdata.bskyb.com-releases</name>
             <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
         </repository>
+        <repository>
+            <id>Spray.io</id>
+            <name>Spray.io repository</name>
+            <url>http://repo.spray.io</url>
+        </repository>
     </repositories>
 
     <properties>
