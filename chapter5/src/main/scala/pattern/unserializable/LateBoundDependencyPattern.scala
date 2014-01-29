@@ -18,11 +18,6 @@ object dependencyInjectedTransformationsSchema {
   val OUTPUT_SCHEMA = List('date, 'userid, 'url, 'email, 'address)
 }
 
-object BasicConversions {
-  implicit def pipeToRichPipe(pipe: Pipe) : RichPipe = new RichPipe(pipe)
-  implicit def richPipeToPipe(rp: RichPipe) : Pipe = rp.pipe
-}
-
 case class UserInfo(email: String, address: String)
 
 trait ExternalService {
@@ -34,7 +29,7 @@ class ExternalServiceImpl extends ExternalService {
 }
 
 trait DependencyInjectedTransformations extends FieldConversions with TupleConversions {
-  import BasicConversions._
+  import Dsl._
 
   def self: Pipe
 
@@ -68,7 +63,7 @@ class ConstructorInjectingSampleJob(args: Args) extends Job(args) {
 }
 
 object FrameworkLazilyInjectedTransformationsWrappers {
-  implicit class FrameworkInjectedTransformationsWrapper(val self: Pipe)(implicit val bindingModule : BindingModule) extends DependencyInjectedTransformations with Injectable {
+  implicit class FrameworkInjectedTransformationsWrapper(val self: Pipe)(implicit val bindingModule : BindingModule) extends DependencyInjectedTransformations with Injectable with Serializable {
     val externalService = inject[ExternalService]
   }
   implicit def fromRichPipe(richPipe: RichPipe)(implicit bindingModule : BindingModule) = new FrameworkInjectedTransformationsWrapper(richPipe.pipe)

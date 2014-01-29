@@ -53,7 +53,7 @@ trait SampleJobPipeTransformations extends PipeOperations {
 
 object SampleJobPipeTransformations  {
   implicit def wrapPipe(pipe: Pipe): SampleJobPipeTransformationsWrapper = new SampleJobPipeTransformationsWrapper(new RichPipe(pipe))
-  implicit class SampleJobPipeTransformationsWrapper(val self: RichPipe) extends SampleJobPipeTransformations
+  implicit class SampleJobPipeTransformationsWrapper(val self: RichPipe) extends SampleJobPipeTransformations with Serializable
 }
 
 import SampleJobPipeTransformations._
