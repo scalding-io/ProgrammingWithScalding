@@ -36,24 +36,6 @@ trait LateBindingTransformations extends FieldConversions with TupleConversions 
   def addUserInfo : Pipe = self.map('userid -> ('email, 'address) ) { userId : String => externalService.getUserInfo(userId) }
 }
 
-object LateBindingTransformations {
-  implicit class LateBindingTransformationsWrapper(val self: Pipe) extends LateBindingTransformations with Serializable {
-    lazy val externalService = new ExternalServiceImpl
-  }
-  implicit def fromRichPipe(richPipe: RichPipe)(implicit externalService : ExternalService) = new LateBindingTransformationsWrapper(richPipe.pipe)
-}
-
-class LateBindingSampleJob(args: Args) extends Job(args) {
-  import ConstructorInjectedTransformationsWrappers._
-  import dependencyInjectedTransformationsSchema._
-
-  Osv(args("eventsPath"), INPUT_SCHEMA).read
-    .addUserInfo
-    .write( Tsv(args("outputPath"), OUTPUT_SCHEMA) )
-}
-
-
-
 object ConstructorInjectedTransformationsWrappers {
   implicit class LateBindingTransformationsWrapper(val self: Pipe)(implicit val externalServiceFactory : () => ExternalService) extends LateBindingTransformations with Serializable {
     lazy val externalService = externalServiceFactory()

@@ -12,8 +12,9 @@ import com.twitter.scalding.Osv
 import com.twitter.scalding.RichPipe
 import com.twitter.scalding.Tsv
 import com.twitter.scalding.TupleConversions
+import pattern.dependencyinjection.LateBindingTransformations
 
-object dependencyInjectedTransformationsSchema {
+object lateBindingTransformationsSchema {
   val INPUT_SCHEMA = List('date, 'userid, 'url)
   val OUTPUT_SCHEMA = List('date, 'userid, 'url, 'email, 'address)
 }
@@ -24,9 +25,28 @@ trait ExternalService {
   def getUserInfo(userId: String) : UserInfo
 }
 
+// NOTE: This class is NOT serializable
 class ExternalServiceImpl extends ExternalService {
-  def getUserInfo(userId: String): UserInfo = ??? //Calls an external web service
+  def getUserInfo(userId: String): UserInfo = UserInfo("email", "address")
 }
+
+
+object LateBindingTransformations {
+  implicit class LateBindingTransformationsWrapper(val self: Pipe) extends LateBindingTransformations with Serializable {
+    lazy val externalService = new ExternalServiceImpl
+  }
+  implicit def fromRichPipe(richPipe: RichPipe)(implicit externalService : ExternalService) = new LateBindingTransformationsWrapper(richPipe.pipe)
+}
+
+class LateBindingSampleJob(args: Args) extends Job(args) {
+  import LateBindingTransformations._
+  import lateBindingTransformationsSchema._
+
+  Osv(args("eventsPath"), INPUT_SCHEMA).read
+    .addUserInfo
+    .write( Tsv(args("outputPath"), OUTPUT_SCHEMA) )
+}
+
 
 trait DependencyInjectedTransformations extends FieldConversions with TupleConversions {
   import Dsl._
@@ -53,7 +73,7 @@ object ConstructorLazilyInjectedTransformationsWrappers {
 
 class ConstructorInjectingSampleJob(args: Args) extends Job(args) {
   import ConstructorLazilyInjectedTransformationsWrappers._
-  import dependencyInjectedTransformationsSchema._
+  import lateBindingTransformationsSchema._
 
   implicit val externalServiceFactory : ExternalServiceFactory = () => new ExternalServiceImpl()
 
@@ -84,7 +104,7 @@ object NewSerializableBindingModule {
 
 class FrameworkInjectingSampleJob(args: Args) extends Job(args) {
   import FrameworkLazilyInjectedTransformationsWrappers._
-  import dependencyInjectedTransformationsSchema._
+  import lateBindingTransformationsSchema._
   import NewSerializableBindingModule._
 
   implicit val bindingModule = newSerializableBindingModule { bindingModule =>
