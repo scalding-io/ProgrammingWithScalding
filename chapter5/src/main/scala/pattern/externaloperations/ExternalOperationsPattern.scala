@@ -81,7 +81,7 @@ object OtherJobPipeTransformationWrappers extends FieldConversions with TupleCon
   implicit def wrapPipe(self: Pipe): OtherJobPipeTransformationsWrapper =
     new OtherJobPipeTransformationsWrapper(new RichPipe(self))
 
-  implicit class OtherJobPipeTransformationsWrapper(val self: RichPipe) extends SampleJobPipeOperations {
+  implicit class OtherJobPipeTransformationsWrapper(val self: RichPipe) extends SampleJobPipeOperations with Serializable {
     /** Input schema: WITH_DAY_SCHEMA
       * Output schema: DAILY_EVENT_COUNT_SCHEMA */
     def countEventsPerDay : Pipe =

@@ -12,15 +12,11 @@ import com.twitter.scalding.Osv
 import com.twitter.scalding.RichPipe
 import com.twitter.scalding.Tsv
 import com.twitter.scalding.TupleConversions
+import pattern.dependencyinjection.DependencyInjectedTransformations
 
-object dependencyInjectedTransformationsSchema {
+object lateBindingTransformationsSchema {
   val INPUT_SCHEMA = List('date, 'userid, 'url)
   val OUTPUT_SCHEMA = List('date, 'userid, 'url, 'email, 'address)
-}
-
-object BasicConversions {
-  implicit def pipeToRichPipe(pipe: Pipe) : RichPipe = new RichPipe(pipe)
-  implicit def richPipeToPipe(rp: RichPipe) : Pipe = rp.pipe
 }
 
 case class UserInfo(email: String, address: String)
@@ -29,12 +25,14 @@ trait ExternalService {
   def getUserInfo(userId: String) : UserInfo
 }
 
+// NOTE: This class is NOT serializable
 class ExternalServiceImpl extends ExternalService {
-  def getUserInfo(userId: String): UserInfo = ??? //Calls an external web service
+  def getUserInfo(userId: String): UserInfo = UserInfo("email", "address")
 }
 
-trait DependencyInjectedTransformations extends FieldConversions with TupleConversions {
-  import BasicConversions._
+
+trait LateBoundTransformations extends FieldConversions with TupleConversions {
+  import Dsl._
 
   def self: Pipe
 
@@ -48,9 +46,26 @@ trait DependencyInjectedTransformations extends FieldConversions with TupleConve
   def addUserInfo : Pipe = self.map('userid -> ('email, 'address) ) { userId : String => externalService.getUserInfo(userId) }
 }
 
+object LateBindingTransformations {
+  implicit class LateBindingTransformationsWrapper(val self: Pipe) extends LateBoundTransformations with Serializable {
+    lazy val externalService = new ExternalServiceImpl
+  }
+  implicit def fromRichPipe(richPipe: RichPipe) = new LateBindingTransformationsWrapper(richPipe.pipe)
+}
+
+class LateBindingSampleJob(args: Args) extends Job(args) {
+  import LateBindingTransformations._
+  import lateBindingTransformationsSchema._
+
+  Osv(args("eventsPath"), INPUT_SCHEMA).read
+    .addUserInfo
+    .write( Tsv(args("outputPath"), OUTPUT_SCHEMA) )
+}
+
+
 object ConstructorLazilyInjectedTransformationsWrappers {
   type ExternalServiceFactory = () => ExternalService
-  implicit class ConstructorLazilyInjectedTransformationsWrapper(val self: Pipe)(implicit externalServiceFactory : ExternalServiceFactory) extends DependencyInjectedTransformations {
+  implicit class ConstructorLazilyInjectedTransformationsWrapper(val self: Pipe)(implicit externalServiceFactory : ExternalServiceFactory) extends LateBoundTransformations {
     lazy val externalService : ExternalService = externalServiceFactory()
   }
   implicit def fromRichPipe(richPipe: RichPipe)(implicit externalServiceFactory : ExternalServiceFactory) = new ConstructorLazilyInjectedTransformationsWrapper(richPipe.pipe)
@@ -58,7 +73,7 @@ object ConstructorLazilyInjectedTransformationsWrappers {
 
 class ConstructorInjectingSampleJob(args: Args) extends Job(args) {
   import ConstructorLazilyInjectedTransformationsWrappers._
-  import dependencyInjectedTransformationsSchema._
+  import lateBindingTransformationsSchema._
 
   implicit val externalServiceFactory : ExternalServiceFactory = () => new ExternalServiceImpl()
 
@@ -68,7 +83,7 @@ class ConstructorInjectingSampleJob(args: Args) extends Job(args) {
 }
 
 object FrameworkLazilyInjectedTransformationsWrappers {
-  implicit class FrameworkInjectedTransformationsWrapper(val self: Pipe)(implicit val bindingModule : BindingModule) extends DependencyInjectedTransformations with Injectable {
+  implicit class FrameworkInjectedTransformationsWrapper(val self: Pipe)(implicit val bindingModule : BindingModule) extends LateBoundTransformations with Injectable with Serializable {
     val externalService = inject[ExternalService]
   }
   implicit def fromRichPipe(richPipe: RichPipe)(implicit bindingModule : BindingModule) = new FrameworkInjectedTransformationsWrapper(richPipe.pipe)
@@ -89,7 +104,7 @@ object NewSerializableBindingModule {
 
 class FrameworkInjectingSampleJob(args: Args) extends Job(args) {
   import FrameworkLazilyInjectedTransformationsWrappers._
-  import dependencyInjectedTransformationsSchema._
+  import lateBindingTransformationsSchema._
   import NewSerializableBindingModule._
 
   implicit val bindingModule = newSerializableBindingModule { bindingModule =>
