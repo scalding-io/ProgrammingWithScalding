@@ -12,7 +12,7 @@ import com.twitter.scalding.Osv
 import com.twitter.scalding.RichPipe
 import com.twitter.scalding.Tsv
 import com.twitter.scalding.TupleConversions
-import pattern.dependencyinjection.LateBindingTransformations
+import pattern.dependencyinjection.DependencyInjectedTransformations
 
 object lateBindingTransformationsSchema {
   val INPUT_SCHEMA = List('date, 'userid, 'url)
@@ -31,24 +31,7 @@ class ExternalServiceImpl extends ExternalService {
 }
 
 
-object LateBindingTransformations {
-  implicit class LateBindingTransformationsWrapper(val self: Pipe) extends LateBindingTransformations with Serializable {
-    lazy val externalService = new ExternalServiceImpl
-  }
-  implicit def fromRichPipe(richPipe: RichPipe)(implicit externalService : ExternalService) = new LateBindingTransformationsWrapper(richPipe.pipe)
-}
-
-class LateBindingSampleJob(args: Args) extends Job(args) {
-  import LateBindingTransformations._
-  import lateBindingTransformationsSchema._
-
-  Osv(args("eventsPath"), INPUT_SCHEMA).read
-    .addUserInfo
-    .write( Tsv(args("outputPath"), OUTPUT_SCHEMA) )
-}
-
-
-trait DependencyInjectedTransformations extends FieldConversions with TupleConversions {
+trait LateBoundTransformations extends FieldConversions with TupleConversions {
   import Dsl._
 
   def self: Pipe
@@ -63,9 +46,26 @@ trait DependencyInjectedTransformations extends FieldConversions with TupleConve
   def addUserInfo : Pipe = self.map('userid -> ('email, 'address) ) { userId : String => externalService.getUserInfo(userId) }
 }
 
+object LateBindingTransformations {
+  implicit class LateBindingTransformationsWrapper(val self: Pipe) extends LateBoundTransformations with Serializable {
+    lazy val externalService = new ExternalServiceImpl
+  }
+  implicit def fromRichPipe(richPipe: RichPipe) = new LateBindingTransformationsWrapper(richPipe.pipe)
+}
+
+class LateBindingSampleJob(args: Args) extends Job(args) {
+  import LateBindingTransformations._
+  import lateBindingTransformationsSchema._
+
+  Osv(args("eventsPath"), INPUT_SCHEMA).read
+    .addUserInfo
+    .write( Tsv(args("outputPath"), OUTPUT_SCHEMA) )
+}
+
+
 object ConstructorLazilyInjectedTransformationsWrappers {
   type ExternalServiceFactory = () => ExternalService
-  implicit class ConstructorLazilyInjectedTransformationsWrapper(val self: Pipe)(implicit externalServiceFactory : ExternalServiceFactory) extends DependencyInjectedTransformations {
+  implicit class ConstructorLazilyInjectedTransformationsWrapper(val self: Pipe)(implicit externalServiceFactory : ExternalServiceFactory) extends LateBoundTransformations {
     lazy val externalService : ExternalService = externalServiceFactory()
   }
   implicit def fromRichPipe(richPipe: RichPipe)(implicit externalServiceFactory : ExternalServiceFactory) = new ConstructorLazilyInjectedTransformationsWrapper(richPipe.pipe)
@@ -83,7 +83,7 @@ class ConstructorInjectingSampleJob(args: Args) extends Job(args) {
 }
 
 object FrameworkLazilyInjectedTransformationsWrappers {
-  implicit class FrameworkInjectedTransformationsWrapper(val self: Pipe)(implicit val bindingModule : BindingModule) extends DependencyInjectedTransformations with Injectable with Serializable {
+  implicit class FrameworkInjectedTransformationsWrapper(val self: Pipe)(implicit val bindingModule : BindingModule) extends LateBoundTransformations with Injectable with Serializable {
     val externalService = inject[ExternalService]
   }
   implicit def fromRichPipe(richPipe: RichPipe)(implicit bindingModule : BindingModule) = new FrameworkInjectedTransformationsWrapper(richPipe.pipe)
