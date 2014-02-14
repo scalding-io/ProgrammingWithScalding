@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <parent>
         <artifactId>programming-map-reduce-with-scalding</artifactId>
         <groupId>packt-book</groupId>
@@ -10,7 +11,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>chapter7</artifactId>
-
 
     <properties>
         <scala.version>2.10</scala.version>
