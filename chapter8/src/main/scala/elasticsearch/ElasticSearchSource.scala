@@ -10,17 +10,19 @@ import cascading.tuple.Fields
 /**
  * https://github.com/rore/SpyGlass/blob/master/src/main/scala/parallelai/spyglass/hbase/HBaseSource.scala
  * https://github.com/twitter/scalding/blob/02a7affe768850cb39e959413020d52ffa3987e9/scalding-core/src/main/scala/com/twitter/scalding/FileSource.scala
+ * https://github.com/twitter/scalding/blob/develop/scalding-jdbc/src/main/scala/com/twitter/scalding/jdbc/JDBCSource.scala
  */
 case class ElasticSearchSource(
    es_host :String="localhost",
    es_port :Int   = 9200,
-   es_resource:String="scalding_index/type")
+   es_resource:String="scalding_index/type",
+   es_fields : Fields = Fields.ALL)
   extends Source {
 
   val sinkMode: SinkMode = SinkMode.REPLACE
 
   def createLocalTap(sinkMode: SinkMode): Tap[_, _, _] =
-    new EsTap(es_host, es_port, es_resource,"",Fields.ALL)
+    new EsTap(es_host, es_port, es_resource,"",es_fields)
 
   override def createTap(readOrWrite: AccessMode)(implicit mode: Mode): Tap[_, _, _] = {
     mode match {
