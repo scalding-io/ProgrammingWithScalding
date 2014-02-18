@@ -1,6 +1,6 @@
 Source code for PACKT Book 'Programming Map-Reduce With Scalding'
 
-The book consists of 8 chapters 
+The book consists of 9 chapters 
 
 * **Hadoop and Abstractions** - 
 Introduction to Hadoop, Map Reduce, Pipelining, Cascading, Pig and Hive.
@@ -18,9 +18,12 @@ The core capabilities of scalding: i) Map-like functions, ii) Grouping/reducing 
 A Scalding log processing flow for a News company, aggregating multiple sources will be presented. 
 Through an example with multiple pipe-lines some more advanced concepts are presented.
 
-* **Testing & BDD** -
-Best practices of first defining behaviour (_Behaviour Driven Development_) then tests (_Test Driven Development_) before proceeding to implementation.
-After implementation, functional tests and other interesting statistical testing methodologies presented.
+* **Development Patterns and Best Practices** -
+Presents interesting design patterns to overcome common issues and add more capabilities into Scalding.
+This chapter presents the External Operations pattern, the Dependency Injection pattern and the Late Bound Dependency pattern
+
+* **Testing & TDD** -
+Best practices of first defining behaviour (_Behaviour Driven Development_) then tests (_Test Driven Development_) and then completing the implementation. How to write unit, integration tests and also apply Black-box testing methodologies in the context of Big Data.
 
 * **Running in Production** -
 Introduction to Distributed Cache and Hadoop production system deployment and execution. 
@@ -28,8 +31,8 @@ Handling multiple HDFS sources: text, avro, csv, etc.
 How to monitor and maintain cluster stability.
 
 * **External data stores** -
-Interaction with external external SQL and NOSQL data stores. 
-Effectively accessing MySQL, HBase and HIVE.
+Interaction with external external SQL, NOSQL and in-memory applications like MemCache , Solr, ElasticSearch.
+Code for accessing SQL databases 
 
 * **Machine Learning** - 
 Machine Learning and Recommendation systems - Pattern - PMML - Mahout.
