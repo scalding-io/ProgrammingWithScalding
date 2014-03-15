@@ -1,4 +1,5 @@
 Source code for PACKT Book 'Programming Map-Reduce With Scalding'
+Page http://scalding-io.github.io/ProgrammingMapReduceWithScalding/
 
 The book consists of 9 chapters 
 
