@@ -19,19 +19,24 @@ case class ElasticSearchSource(
    es_fields : Fields = Fields.ALL)
   extends Source {
 
-  val sinkMode: SinkMode = SinkMode.REPLACE
 
-  def createLocalTap(sinkMode: SinkMode): Tap[_, _, _] =
+  def createTap: Tap[_, _, _] =
     new EsTap(es_host, es_port, es_resource,"",es_fields)
 
   override def createTap(readOrWrite: AccessMode)(implicit mode: Mode): Tap[_, _, _] = {
     mode match {
       case Local(_) => {
-        createLocalTap(sinkMode)
+        createTap
       }
+//      case hdfsMode@Hdfs(_, _) => readOrWrite match {      }
     }
   }
+
 }
+
+//  val sinkMode: SinkMode = SinkMode.REPLACE
+
+
 //      case hdfsMode@Hdfs(_, _) => readOrWrite match {
 //        case Read => createHdfsReadTap(hdfsMode)
 //        //case Write => EsTap() // CastHfsTap(new Hfs(hdfsScheme, hdfsWritePath, sinkMode))

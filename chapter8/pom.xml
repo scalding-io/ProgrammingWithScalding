@@ -2,23 +2,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <artifactId>programming-map-reduce-with-scalding</artifactId>
         <groupId>packt-book</groupId>
-        <version>0.1</version>
+        <version>1.0</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
     <artifactId>chapter8</artifactId>
 
     <properties>
-        <scala.version>2.10</scala.version>
-        <scala.library.version>2.10.2</scala.library.version>
-        <scalding.version>0.8.11</scalding.version>
-        <scala.scalding.version>2.10</scala.scalding.version>
+        <scala.version>2.9.3</scala.version>
+        <scala.library.version>2.9.3</scala.library.version>
+        <scalding.version>0.9.0rc4</scalding.version>
+        <scala.scalding.version>2.9.3</scala.scalding.version>
         <cascading.version>2.1.6</cascading.version>
-        <scalding-commons.version>0.2.0</scalding-commons.version>
+        <scalding-commons.version>0.9.0rc4</scalding-commons.version>
         <scalatest.version>2.0.RC1</scalatest.version>
         <scalatest-maven-plugin.version>1.0-M2</scalatest-maven-plugin.version>
         <typesafe.config.version>1.0.0</typesafe.config.version>
@@ -51,6 +51,11 @@
         </dependency>
         <dependency>
             <groupId>com.twitter</groupId>
+            <artifactId>scalding-jdbc_${scala.scalding.version}</artifactId>
+            <version>${scalding.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.twitter</groupId>
             <artifactId>scalding-commons_${scala.scalding.version}</artifactId>
             <version>${scalding-commons.version}</version>
         </dependency>
@@ -69,10 +74,11 @@
             <artifactId>config</artifactId>
             <version>${typesafe.config.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.scalatest</groupId>
             <artifactId>scalatest_${scala.version}</artifactId>
-            <version>${scalatest.version}</version>
+            <version>1.9.2</version>
             <!--  <scope>test</scope>  -->
         </dependency>
 
@@ -99,6 +105,12 @@
             <version>1.9.13</version>
         </dependency>
 
+        <!-- JDBC examples -->
+        <dependency>
+            <groupId>cascading</groupId>
+            <artifactId>cascading-jdbc-mysql</artifactId>
+            <version>2.5.1</version>
+        </dependency>
 
 
         <dependency>

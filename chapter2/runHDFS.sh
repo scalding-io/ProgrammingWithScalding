@@ -1,3 +1,4 @@
+#!/bin/sh
 echo This is a happy day. A day to remember > input.txt
 hadoop fs -mkdir -p hdfs:///data/input hdfs:///data/output
 hadoop fs -put input.txt hdfs:///data/input/

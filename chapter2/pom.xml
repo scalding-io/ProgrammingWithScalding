@@ -2,37 +2,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>packt-book</groupId>
         <artifactId>programming-map-reduce-with-scalding</artifactId>
-        <version>0.1</version>
+        <version>1.0</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
-    <packaging>jar</packaging>
     <artifactId>chapter2</artifactId>
-    <version>0</version>
-
-    <repositories>
-        <repository>
-            <id>maven.org</id>
-            <url>http://repo2.maven.org/maven2/</url>
-        </repository>
-        <repository>
-            <id>scala-tools.org</id>
-            <name>Scala-Tools Maven2 Repository</name>
-            <url>http://scala-tools.org/repo-releases</url>
-        </repository>
-        <repository>
-            <id>cloudera</id>
-            <name>Cloudera Maven Repository</name>
-            <url>https://repository.cloudera.com/content/repositories/releases/</url>
-        </repository>
-        <repository>
-            <id>conjars.org</id>
-            <url>http://conjars.org/repo</url>
-        </repository>
-    </repositories>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>

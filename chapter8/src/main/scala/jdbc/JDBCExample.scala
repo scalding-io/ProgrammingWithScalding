@@ -44,4 +44,7 @@ class JDBCExample (args: Args) extends Job(args) {
 
   // Running this job multiple times, will generate multiple rows
 
+  // To read from that table we can do
+  val read_from_mysql = MySQLTableSource.read
+    .write(Tsv("jdbc-output"))
 }
