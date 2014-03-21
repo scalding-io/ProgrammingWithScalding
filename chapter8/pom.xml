@@ -16,7 +16,7 @@
         <scala.version>2.9.3</scala.version>
         <scala.library.version>2.9.3</scala.library.version>
         <scalding.version>0.9.0rc4</scalding.version>
-        <scala.scalding.version>2.9.3</scala.scalding.version>
+        <scala.scalding.version>2.10</scala.scalding.version>
         <cascading.version>2.1.6</cascading.version>
         <scalding-commons.version>0.9.0rc4</scalding-commons.version>
         <scalatest.version>2.0.RC1</scalatest.version>
