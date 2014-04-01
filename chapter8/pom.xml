@@ -7,42 +7,17 @@
     <parent>
         <artifactId>programming-map-reduce-with-scalding</artifactId>
         <groupId>packt-book</groupId>
-        <version>1.0</version>
+        <version>0</version>
     </parent>
 
     <artifactId>chapter8</artifactId>
-
-    <properties>
-        <scala.version>2.9.3</scala.version>
-        <scala.library.version>2.9.3</scala.library.version>
-        <scalding.version>0.9.0rc4</scalding.version>
-        <scala.scalding.version>2.10</scala.scalding.version>
-        <cascading.version>2.1.6</cascading.version>
-        <scalding-commons.version>0.9.0rc4</scalding-commons.version>
-        <scalatest.version>2.0.RC1</scalatest.version>
-        <scalatest-maven-plugin.version>1.0-M2</scalatest-maven-plugin.version>
-        <typesafe.config.version>1.0.0</typesafe.config.version>
-        <maven-scala-plugin.version>2.15.2</maven-scala-plugin.version>
-        <scala-maven-plugin.version>3.1.6</scala-maven-plugin.version>
-        <maven.compiler.source>1.6</maven.compiler.source>
-        <maven.compiler.target>1.6</maven.compiler.target>
-        <maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
-        <junit.version>4.11</junit.version>
-        <slf4j.version>1.7.2</slf4j.version>
-
-        <!-- UTF-8 Encoding settings -->
-        <encoding>UTF-8</encoding>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <hadoop-lzo.version>0.4.16</hadoop-lzo.version>
-    </properties>
 
     <dependencies>
         <!-- Scalding -->
         <dependency>
             <groupId>com.twitter</groupId>
             <artifactId>scalding-jdbc_${scala.scalding.version}</artifactId>
-            <version>${scalding.version}</version>
+            <version>0.9.0rc15</version>
         </dependency>
         <dependency>
             <groupId>com.twitter</groupId>

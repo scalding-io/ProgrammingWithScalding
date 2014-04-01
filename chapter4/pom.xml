@@ -2,33 +2,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>packt-book</groupId>
         <artifactId>programming-map-reduce-with-scalding</artifactId>
-        <version>1.0</version>
+        <version>0</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
     <packaging>jar</packaging>
     <artifactId>chapter4</artifactId>
-    <version>0</version>
-
-    <properties>
-        <maven.compiler.source>1.6</maven.compiler.source>
-        <maven.compiler.target>1.6</maven.compiler.target>
-
-        <scalatest-maven-plugin.version>1.0-M2</scalatest-maven-plugin.version>
-
-        <scalding-commons.version>0.2.0</scalding-commons.version>
-        <scalding-core.version>0.8.11</scalding-core.version>
-        <scala.version>2.10</scala.version>
-        <scala.full.version>2.10.2</scala.full.version>
-        <scalatest.version>2.0</scalatest.version>
-        <commons.test.version>1.0.0</commons.test.version>
-        <junit.version>4.10</junit.version>
-
-        <specs2.version>2.3.4</specs2.version>
-    </properties>
 
     <dependencies>
 
@@ -115,55 +98,7 @@
             <version>0.8.1</version>
         </dependency>
 
-
     </dependencies>
-
-    <!-- Profiles
-    <profiles>
-        <profile>
-            <id>windows_profile</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-                <os>
-                    <family>Windows</family>
-                </os>
-            </activation>
-            <properties>
-                <toolsjar>${JAVA_HOME}\\lib\\tools.jar</toolsjar>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>jdk.tools</groupId>
-                    <artifactId>jdk.tools</artifactId>
-                    <version>1.7</version>
-                    <scope>system</scope>
-                    <systemPath>${toolsjar}</systemPath>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>osx_profile</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-                <os>
-                    <family>mac</family>
-                </os>
-            </activation>
-            <properties>
-                <toolsjar>${java.home}/../Classes/classes.jar</toolsjar>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>jdk.tools</groupId>
-                    <artifactId>jdk.tools</artifactId>
-                    <version>1.6</version>
-                    <scope>system</scope>
-                    <systemPath>${toolsjar}</systemPath>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
-    -->
 
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>

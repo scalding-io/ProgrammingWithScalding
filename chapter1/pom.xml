@@ -8,7 +8,7 @@
     <parent>
         <groupId>packt-book</groupId>
         <artifactId>programming-map-reduce-with-scalding</artifactId>
-        <version>1.0</version>
+        <version>0</version>
     </parent>
 
     <artifactId>chapter1</artifactId>

@@ -2,27 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <artifactId>programming-map-reduce-with-scalding</artifactId>
         <groupId>packt-book</groupId>
-        <version>1.0</version>
+        <version>0</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
     <artifactId>chapter6</artifactId>
-
-
-    <properties>
-        <scala.version>2.10</scala.version>
-        <scala.library.version>2.10.2</scala.library.version>
-        <scalding.version>0.8.11</scalding.version>
-        <scala.scalding.version>2.10</scala.scalding.version>
-        <cascading.version>2.1.6</cascading.version>
-        <scalding-commons.version>0.2.0</scalding-commons.version>
-        <scalatest.version>2.0.RC1</scalatest.version>
-        <scalatest-maven-plugin.version>1.0-M2</scalatest-maven-plugin.version>
-        <typesafe.config.version>1.0.0</typesafe.config.version>
-    </properties>
 
     <dependencies>
 

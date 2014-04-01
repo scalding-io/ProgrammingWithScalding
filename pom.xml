@@ -84,6 +84,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <encoding>UTF-8</encoding>
 
         <apacheCommonMath.version>2.2</apacheCommonMath.version>
         <apachevelocity.version>1.7</apachevelocity.version>
@@ -99,6 +101,7 @@
         <edu.ucar.netcdf.version>4.3.18</edu.ucar.netcdf.version>
         <gson.version>2.2.4</gson.version>
         <jedis.version>2.1.0</jedis.version>
+        <hadoop-lzo.version>0.4.16</hadoop-lzo.version>
         <httpClient.version>4.0-beta2</httpClient.version>
         <javaxmail.version>1.4</javaxmail.version>
         <javaxactivation.version>1.1-rev-1</javaxactivation.version>
@@ -112,16 +115,21 @@
         <nosqlunit-mongodb.version>0.7.7</nosqlunit-mongodb.version>
         <org.springframework.version>3.1.0.RELEASE</org.springframework.version>
         <scala-library.version>2.10.3</scala-library.version>
+        <scala-maven-plugin.version>3.1.6</scala-maven-plugin.version>
         <scala.version>2.10</scala.version>
         <scala.full.version>2.10.2</scala.full.version>
+        <scala.scalding.version>2.10</scala.scalding.version>
         <scalatest-maven-plugin.version>1.0-M2</scalatest-maven-plugin.version>
+        <scalatest.version>2.0.RC1</scalatest.version>
         <scalatest.version>2.0</scalatest.version>
+        <scalding.version>0.9.0rc4</scalding.version>
         <scalding-commons.version>0.2.0</scalding-commons.version>
         <scalding-core.version>0.8.11</scalding-core.version>
         <servlet-api-version>3.1.0</servlet-api-version>
         <simpleLatLng.version>1.3.0</simpleLatLng.version>
         <slf4j.log4j12.version>1.6.2</slf4j.log4j12.version>
         <slf4j-api.version>1.7.5</slf4j-api.version>
+        <slf4j.version>1.7.2</slf4j.version>
         <specs2.version>2.3.4</specs2.version>
         <spring-javaconfig.version>1.0.0.m3</spring-javaconfig.version>
         <trove4j.version>2.0.2</trove4j.version>
@@ -133,8 +141,6 @@
         <maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
 
     </properties>
-
-
 
     <dependencies>
 
