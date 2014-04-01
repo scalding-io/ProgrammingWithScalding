@@ -17,18 +17,6 @@
     <packaging>jar</packaging>
     <version>0.17</version>
 
-    <repositories>
-        <repository>
-            <id>conjars.org</id>
-            <url>http://conjars.org/repo</url>
-        </repository>
-        <repository>
-            <id>cloudera-cdh4</id>
-            <name>cloudera-cdh4</name>
-            <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
-        </repository>
-    </repositories>
-
     <properties>
         <typesafe.config.version>1.0.0</typesafe.config.version>
         <maven-scala-plugin.version>2.15.2</maven-scala-plugin.version>
@@ -46,35 +34,6 @@
     </properties>
 
     <dependencies>
-
-        <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <version>2.10.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-compiler</artifactId>
-            <version>2.10.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.twitter</groupId>
-            <artifactId>scalding-core_2.10</artifactId>
-            <version>0.8.11</version>
-        </dependency>
-        <dependency>
-            <groupId>com.twitter</groupId>
-            <artifactId>scalding-commons_2.10</artifactId>
-            <version>0.8.11</version>
-        </dependency>
-        <!--
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-common</artifactId>
-            <version>2.0.0-cdh4.3.0</version>
-        </dependency>
-        -->
         <!--
         <dependency>
             <groupId>com.twitter</groupId>
@@ -123,11 +82,7 @@
 
 
 
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-core</artifactId>
-            <version>2.0.0-mr1-cdh4.3.2</version>
-        </dependency>
+
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-tools</artifactId>
@@ -167,7 +122,7 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>src/main/java</sourceDirectory>
+        <sourceDirectory>src/main/scala</sourceDirectory>
         <!-- <testSourceDirectory>src/test/scala</testSourceDirectory> -->
         <plugins>
             <plugin>

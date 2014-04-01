@@ -13,27 +13,6 @@
     <artifactId>chapter4</artifactId>
     <version>0</version>
 
-    <repositories>
-        <repository>
-            <id>maven.org</id>
-            <url>http://repo2.maven.org/maven2/</url>
-        </repository>
-        <repository>
-            <id>scala-tools.org</id>
-            <name>Scala-Tools Maven2 Repository</name>
-            <url>http://scala-tools.org/repo-releases</url>
-        </repository>
-        <repository>
-            <id>cloudera</id>
-            <name>Cloudera Maven Repository</name>
-            <url>https://repository.cloudera.com/content/repositories/releases/</url>
-        </repository>
-        <repository>
-            <id>conjars.org</id>
-            <url>http://conjars.org/repo</url>
-        </repository>
-    </repositories>
-
     <properties>
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
@@ -52,11 +31,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <version>2.10.2</version>
-        </dependency>
 
         <dependency>
             <groupId>cascading</groupId>
@@ -73,23 +47,6 @@
             <groupId>cascading</groupId>
             <artifactId>cascading-hadoop</artifactId>
             <version>2.1.6</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.twitter</groupId>
-            <artifactId>scalding-core_2.10</artifactId>
-            <version>0.9.0rc1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-core</artifactId>
-            <version>2.0.0-mr1-cdh4.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-common</artifactId>
-            <version>2.0.0-cdh4.0.0</version>
         </dependency>
 
         <dependency>

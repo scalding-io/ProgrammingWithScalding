@@ -54,18 +54,6 @@
             <version>${slf4j.log4j12.version}</version>
         </dependency>
 
-
-        <!-- Hadoop MRv1 -->
-        <!--<dependency>-->
-        <!--<groupId>org.apache.hadoop</groupId>-->
-        <!--<artifactId>hadoop-core</artifactId>-->
-        <!--<version>2.0.0-mr1-cdh4.5.0</version>-->
-        <!--</dependency>-->
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-core</artifactId>
-            <version>0.20.2</version>
-        </dependency>
     </dependencies>
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>

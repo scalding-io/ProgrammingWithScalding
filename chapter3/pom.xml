@@ -5,68 +5,20 @@
     <parent>
         <groupId>packt-book</groupId>
         <artifactId>programming-map-reduce-with-scalding</artifactId>
-        <version>1.0</version>
+        <version>0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <packaging>jar</packaging>
     <artifactId>chapter3</artifactId>
-    <version>0</version>
-
-    <repositories>
-        <repository>
-            <id>maven.org</id>
-            <url>http://repo2.maven.org/maven2/</url>
-        </repository>
-        <repository>
-            <id>scala-tools.org</id>
-            <name>Scala-Tools Maven2 Repository</name>
-            <url>http://scala-tools.org/repo-releases</url>
-        </repository>
-        <repository>
-            <id>cloudera</id>
-            <name>Cloudera Maven Repository</name>
-            <url>https://repository.cloudera.com/content/repositories/releases/</url>
-        </repository>
-        <repository>
-            <id>conjars.org</id>
-            <url>http://conjars.org/repo</url>
-        </repository>
-        <!-- Scalavro-core depends on spray.io:spray-json -->
-        <repository>
-            <id>spray.io</id>
-            <url>http://spray.github.com/spray/api/spray-json/</url>
-        </repository>
-    </repositories>
 
     <dependencies>
-        <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <version>2.10.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.twitter</groupId>
-            <artifactId>scalding-core_2.10</artifactId>
-            <version>0.9.0rc4</version>
-        </dependency>
         <dependency>
             <groupId>com.twitter</groupId>
             <artifactId>scalding-avro_2.10</artifactId>
             <version>0.9.0rc4</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-core</artifactId>
-            <version>2.0.0-mr1-cdh4.0.0</version>
-        </dependency>
-<!--        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-common</artifactId>
-            <version>2.0.0-cdh4.0.0</version>
-        </dependency> -->
 
         <dependency>
             <groupId>com.cloudphysics</groupId>
@@ -75,77 +27,29 @@
         </dependency>
 
         <!-- Following 4 libraries for Avro support -->
-        <dependency>
-            <groupId>cascading.avro</groupId>
-            <artifactId>avro-scheme</artifactId>
-            <version>2.1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.avro</groupId>
-            <artifactId>avro</artifactId>
-            <version>1.7.4</version>
+        <!--<dependency>-->
+            <!--<groupId>cascading.avro</groupId>-->
+            <!--<artifactId>avro-scheme</artifactId>-->
+            <!--<version>2.1.1</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.avro</groupId>-->
+            <!--<artifactId>avro</artifactId>-->
+            <!--<version>1.7.4</version>-->
             <!-- <scope>provided</scope> -->
-        </dependency>
-        <dependency>
-            <groupId>cascading.avro</groupId>
-            <artifactId>avro-scheme</artifactId>
-            <version>2.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.gensler</groupId>
-            <artifactId>scalavro-core_2.10</artifactId>
-            <version>0.6.0</version>
-        </dependency>
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>cascading.avro</groupId>-->
+            <!--<artifactId>avro-scheme</artifactId>-->
+            <!--<version>2.1.2</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>com.gensler</groupId>-->
+            <!--<artifactId>scalavro-core_2.10</artifactId>-->
+            <!--<version>0.6.0</version>-->
+        <!--</dependency>-->
 
     </dependencies>
-
-
-    <!-- Profiles
-    <profiles>
-        <profile>
-            <id>windows_profile</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-                <os>
-                    <family>Windows</family>
-                </os>
-            </activation>
-            <properties>
-                <toolsjar>${JAVA_HOME}\\lib\\tools.jar</toolsjar>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>jdk.tools</groupId>
-                    <artifactId>jdk.tools</artifactId>
-                    <version>1.7</version>
-                    <scope>system</scope>
-                    <systemPath>${toolsjar}</systemPath>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>osx_profile</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-                <os>
-                    <family>mac</family>
-                </os>
-            </activation>
-            <properties>
-                <toolsjar>${java.home}/../Classes/classes.jar</toolsjar>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>jdk.tools</groupId>
-                    <artifactId>jdk.tools</artifactId>
-                    <version>1.6</version>
-                    <scope>system</scope>
-                    <systemPath>${toolsjar}</systemPath>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
-    -->
 
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>

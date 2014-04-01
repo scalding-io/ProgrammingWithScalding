@@ -7,18 +7,14 @@
     <parent>
         <groupId>packt-book</groupId>
         <artifactId>programming-map-reduce-with-scalding</artifactId>
-        <version>1.0</version>
+        <version>0</version>
     </parent>
 
     <artifactId>chapter2</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
-        <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <version>2.10.2</version>
-        </dependency>
+
 
         <dependency>
             <groupId>cascading</groupId>
@@ -37,71 +33,10 @@
             <version>2.1.6</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.twitter</groupId>
-            <artifactId>scalding-core_2.10</artifactId>
-            <version>0.9.0rc1</version>
-        </dependency>
 
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-core</artifactId>
-            <version>2.0.0-mr1-cdh4.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-common</artifactId>
-            <version>2.0.0-cdh4.0.0</version>
-        </dependency>
+
 
     </dependencies>
-
-    <!-- Profiles
-    <profiles>
-        <profile>
-            <id>windows_profile</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-                <os>
-                    <family>Windows</family>
-                </os>
-            </activation>
-            <properties>
-                <toolsjar>${JAVA_HOME}\\lib\\tools.jar</toolsjar>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>jdk.tools</groupId>
-                    <artifactId>jdk.tools</artifactId>
-                    <version>1.7</version>
-                    <scope>system</scope>
-                    <systemPath>${toolsjar}</systemPath>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>osx_profile</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-                <os>
-                    <family>mac</family>
-                </os>
-            </activation>
-            <properties>
-                <toolsjar>${java.home}/../Classes/classes.jar</toolsjar>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>jdk.tools</groupId>
-                    <artifactId>jdk.tools</artifactId>
-                    <version>1.6</version>
-                    <scope>system</scope>
-                    <systemPath>${toolsjar}</systemPath>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
-    -->
 
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>
@@ -179,18 +114,6 @@
                         </lifecycleMappingMetadata>
                     </configuration>
                 </plugin>
-                <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-compiler-plugin</artifactId>-->
-                <!--<executions>-->
-                <!--<execution>-->
-                <!--<phase>compile</phase>-->
-                <!--<goals>-->
-                <!--<goal>compile</goal>-->
-                <!--</goals>-->
-                <!--</execution>-->
-                <!--</executions>-->
-                <!--</plugin>-->
             </plugins>
         </pluginManagement>
     </build>
