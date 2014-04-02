@@ -10,9 +10,11 @@ class dot(args: Args) extends Job(args) {
     ("blueSquare", 1,  5),
     ("redSquare" , 2 , 3))
 
+  val schema = List('square, 'x, 'y)
+
   // This example is equivalent to using `sum`, but you can also supply other reduce functions.
   val costPerProjectPhase =
-    IterableSource[(String, Int, Int)](squaresList, ('square, 'x, 'y))
+    IterableSource[(String, Int, Int)](squaresList,schema)
       .groupBy('square) { group => group.dot[Int]('x, 'y, 'x_dot_y) }
       .debug
       .write(Tsv("dot"))

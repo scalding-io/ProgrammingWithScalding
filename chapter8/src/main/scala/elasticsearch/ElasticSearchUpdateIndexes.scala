@@ -23,7 +23,7 @@ class ElasticSearchUpdateIndexes(args: Args) extends Job(args) {
   val schema = List('number, 'product, 'description)
   val indexNewDataInElasticSearch =
     IterableSource[(String,String, String)](someData, schema)
-      .write(ElasticSearchSource("dev.weather.marine.travel", 9200,"index_es/type_es", schema, elasticSearchProperties))
+      .write(ElasticSearchSource("dev.weather.marine.travel", 9200,"index_es/type_es", schema)) // elasticSearchProperties
 
 //  val readDataFromElasticSearch =
 //     ElasticSearchSource("localhost", 9200,"index_es/type_es").read

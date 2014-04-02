@@ -21,18 +21,17 @@ public class CascadingExample {
     public static void main( String[] args ) {
 
         Fields schema = new Fields("productID", "customerID", "quantity");
-        Tap in = new FileTap(new TextDelimited(schema, false, "," ), "src/test/resources/products.tsv");
-        //Tap out = new FileTap(new TextDelimited(), "output" );
+        Tap in = new FileTap(new TextDelimited(schema, false, "," ), "src/main/resources/products.tsv");
+        Tap out = new FileTap(new TextDelimited(true, "\t"), "output" );
+
 
         // Elastic Search configuration
-        Properties properties = new Properties();
-        properties.setProperty("es.mapping.id", "productID");
-        properties.setProperty("es.write.operation","create");
-
-        Tap out = new FileTap(new TextDelimited(), "output" );
-
-        FlowConnector flow = new LocalFlowConnector(properties); // new
-        flow.connect(in, out, new Pipe("write-to-ES")).complete();
+//        Properties properties = new Properties();
+//        properties.setProperty("es.mapping.id", "productID");
+//        properties.setProperty("es.write.operation","create");
+//        Tap out = new FileTap(new TextDelimited(), "output" );
+//        FlowConnector flow = new LocalFlowConnector(properties);
+//        flow.connect(in, out, new Pipe("write-to-ES")).complete();
 
     }
 }

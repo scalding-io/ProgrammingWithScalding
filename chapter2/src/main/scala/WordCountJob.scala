@@ -10,4 +10,5 @@ class WordCountJob(args: Args) extends Job(args) {
   def tokenize(text : String) : Array[String] = {
     text.toLowerCase.replaceAll("[^a-zA-Z0-9\\s]", "").split("\\s+")
   }
+
 }
