@@ -2,8 +2,8 @@ import com.twitter.algebird.Ring
 import com.twitter.scalding._
 import com.twitter.scalding.mathematics.Matrix
 
-/** A vector of ratings for a given item by different users. */
 case class ItemRatingVector(ratings: List[Double]) {
+  /** A vector of ratings for a given item by different users. *
   def dotProductWith(that: ItemRatingVector): Double = {
     ratings.zip(that.ratings).map { pair => pair._1 * pair._2 }.sum
   }
@@ -92,4 +92,5 @@ class PearsonCorrelationItemItem(args: Args) extends Job(args) {
   (matrix.transpose * matrix)
     .mapValues { value: MatrixThing => value.calculateSimilarity }
     .write( Tsv( args("output") ) )
+  */
 }
