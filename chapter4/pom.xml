@@ -10,35 +10,11 @@
         <version>0</version>
     </parent>
 
-    <packaging>jar</packaging>
     <artifactId>chapter4</artifactId>
 
     <dependencies>
 
-        <dependency>
-            <groupId>cascading</groupId>
-            <artifactId>cascading-core</artifactId>
-            <version>2.1.6</version>
-        </dependency>
-        <dependency>
-            <groupId>cascading</groupId>
-            <artifactId>cascading-local</artifactId>
-            <version>2.1.6</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cascading</groupId>
-            <artifactId>cascading-hadoop</artifactId>
-            <version>2.1.6</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.cloudphysics</groupId>
-            <artifactId>jerkson_2.10</artifactId>
-            <version>0.6.3</version>
-        </dependency>
-
-        <!-- For Scala add joda-convert as well -->
+        <!-- When using Joda library in Scala import both libraries: joda-time and joda-convert -->
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
@@ -50,7 +26,8 @@
             <version>1.5</version>
         </dependency>
 
-        <!-- For Scalding Unit -->
+        <!-- Check with Stefano: This is now pushed and accepted in Scalding main github repo
+             TODO: Use it instead of our own Scalding Unit -->
         <dependency>
             <groupId>com.github.nscala-time</groupId>
             <artifactId>nscala-time_2.10</artifactId>
@@ -62,134 +39,18 @@
             <version>0.5</version>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- Testing -->
-        <dependency>
-            <groupId>org.specs2</groupId>
-            <artifactId>specs2_${scala.version}</artifactId>
-            <version>${specs2.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.scalatest</groupId>
-            <artifactId>scalatest_${scala.version}</artifactId>
-            <version>${scalatest.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.scalatest</groupId>
-            <artifactId>scalatest-maven-plugin</artifactId>
-            <version>${scalatest-maven-plugin.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>thirdparty</groupId>
             <artifactId>jgrapht-jdk1.6</artifactId>
             <version>0.8.1</version>
         </dependency>
 
+        <!-- JSON -->
+        <dependency>
+            <groupId>com.cloudphysics</groupId>
+            <artifactId>jerkson_2.10</artifactId>
+            <version>0.6.3</version>
+        </dependency>
+
     </dependencies>
-
-    <build>
-        <sourceDirectory>src/main/scala</sourceDirectory>
-        <plugins>
-            <plugin>
-                <groupId>net.alchim31.maven</groupId>
-                <artifactId>scala-maven-plugin</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <!-- <configuration>
-                  <recompileMode>incremental</recompileMode>
-                  <useZincServer>true</useZincServer>
-                </configuration> -->
-            </plugin>
-            <!-- Fat Jar -->
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <!-- bind to the packaging phase -->
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-
-        <pluginManagement>
-            <plugins>
-                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>
-                                            net.alchim31.maven
-                                        </groupId>
-                                        <artifactId>
-                                            scala-maven-plugin
-                                        </artifactId>
-                                        <versionRange>
-                                            [3.1.0,)
-
-                                        </versionRange>
-                                        <goals>
-                                            <goal>compile</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore></ignore>
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
-                </plugin>
-                <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-compiler-plugin</artifactId>-->
-                <!--<executions>-->
-                <!--<execution>-->
-                <!--<phase>compile</phase>-->
-                <!--<goals>-->
-                <!--<goal>compile</goal>-->
-                <!--</goals>-->
-                <!--</execution>-->
-                <!--</executions>-->
-                <!--</plugin>-->
-            </plugins>
-        </pluginManagement>
-    </build>
 
 </project>

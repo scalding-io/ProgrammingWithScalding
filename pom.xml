@@ -52,11 +52,12 @@
             <id>clojure-releases</id>
             <url>http://build.clojure.org/releases</url>
         </repository>
+        -->
+        <!-- For hadoop-lzo-compression -->
         <repository>
             <id>twitter</id>
             <url>http://maven.twttr.com</url>
         </repository>
-        -->
         <repository>
             <id>conjars.org</id>
             <url>http://conjars.org/repo</url>
@@ -122,7 +123,8 @@
         <scalatest-maven-plugin.version>1.0-M2</scalatest-maven-plugin.version>
         <scalatest.version>2.0.RC1</scalatest.version>
         <scalatest.version>2.0</scalatest.version>
-        <scalding.version>0.9.0rc4</scalding.version>
+        <!-- IMPORTANT ;-) -->
+        <scalding.version>0.9.0rc15</scalding.version>
         <scalding-commons.version>0.2.0</scalding-commons.version>
         <scalding-core.version>0.8.11</scalding-core.version>
         <servlet-api-version>3.1.0</servlet-api-version>
@@ -135,7 +137,6 @@
         <trove4j.version>2.0.2</trove4j.version>
 
         <typesafe.config.version>1.0.0</typesafe.config.version>
-        <maven-scala-plugin.version>2.15.2</maven-scala-plugin.version>
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
         <maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
@@ -161,27 +162,58 @@
         <dependency>
             <groupId>com.twitter</groupId>
             <artifactId>scalding-core_2.10</artifactId>
-            <version>0.9.0rc4</version>
+            <version>${scalding.version}</version>
         </dependency>
         <dependency>
             <groupId>com.twitter</groupId>
             <artifactId>scalding-commons_2.10</artifactId>
-            <version>0.2.0</version>
+            <version>${scalding.version}</version>
         </dependency>
 
         <!-- Hadoop -->
+        <!--
+           Use 2.0.0-mr1-cdh4.x.x for MRv1 APIs
+           Use 2.0.0-cdh4.0.0 for YARN APIs
+        -->
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-core</artifactId>
-            <!-- MR 1
-            <version>0.20.2</version> -->
-            <version>2.0.0-mr1-cdh4.3.2</version>
+            <version>2.0.0-mr1-cdh4.6.0</version> <!-- 0.20.2-->
         </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-common</artifactId>
-            <version>2.0.0-cdh4.3.0</version>
+            <version>2.0.0-cdh4.6.0</version>
         </dependency>
+
+        <!-- Testing -->
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_2.10</artifactId>
+            <version>${scalatest.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.specs2</groupId>
+            <artifactId>specs2_2.10</artifactId>
+            <version>${specs2.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- TODO - Check if required
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest-maven-plugin</artifactId>
+            <version>${scalatest-maven-plugin.version}</version>
+            <scope>test</scope>
+        </dependency>
+        -->
 
         <!--
         <dependency>
@@ -191,5 +223,74 @@
         </dependency>
         -->
     </dependencies>
+
+    <build>
+        <sourceDirectory>src/main/scala</sourceDirectory>
+
+        <plugins>
+            <!--   IMPORTANT: Requires Maven 3.0+
+            The plugin was renamed to from maven-scala-plugin into
+            scala-maven-plugin to respect the new maven naming policy for plugins.
+            (ie only maven core plugins are prefixed maven)scala-maven-plugin
+            -->
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>3.1.6</version>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <!-- Advanced options if Zinc server is in use
+                <configuration>
+                    <recompileMode>incremental</recompileMode>
+                    <useZincServer>true</useZincServer>
+                </configuration> -->
+            </plugin>
+
+            <!-- Fat Jar: This plugin assembles a Fat-Jar that contains all the dependencies and libs -->
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <!-- bind to the packaging phase -->
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>alternateLocation</directory>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
+        </plugins>
+
+    </build>
 
 </project>

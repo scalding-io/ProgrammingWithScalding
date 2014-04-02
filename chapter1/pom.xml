@@ -12,14 +12,13 @@
     </parent>
 
     <artifactId>chapter1</artifactId>
-    <packaging>jar</packaging>
 
+    <!-- Chapter 1 is the only chapter using just Cascading & Java code .. -->
     <dependencies>
         <dependency>
             <groupId>cascading</groupId>
             <artifactId>cascading-core</artifactId>
             <version>${cascading.version}</version>
-            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>cascading</groupId>
@@ -32,16 +31,10 @@
             <version>${cascading.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.log4j12.version}</version>
-        </dependency>
-        <dependency>
             <groupId>cascading</groupId>
             <artifactId>cascading-xml</artifactId>
             <version>${cascading.version}</version>
         </dependency>
-
         <dependency>
             <groupId>cascading</groupId>
             <artifactId>cascading-platform</artifactId>
@@ -50,27 +43,18 @@
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.log4j12.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j.log4j12.version}</version>
         </dependency>
-
     </dependencies>
+
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
-        <plugins>
-            <plugin>
-                <groupId>net.alchim31.maven</groupId>
-                <artifactId>scala-maven-plugin</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
     </build>
+
 </project>
