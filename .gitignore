@@ -16,3 +16,4 @@ project/plugins/project/
 *.iml
 
 /chapter*/alternateLocation/
+/chapter*/data/output-*
