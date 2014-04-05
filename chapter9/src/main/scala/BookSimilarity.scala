@@ -1,12 +1,13 @@
-import cascading.tuple.Fields
 import com.twitter.scalding._
-import TDsl._
 import com.twitter.scalding.mathematics.Matrix
 
 /**
- * Finding the most representative words in every canto using TF-IDF
- * term frequency–inverse document frequency
- * Run it using run tutorial.Tutorial2 --k 20 (or any other number of common words)
+ * Discovery of book-similarity using TF-IDF ( Term Frequency / Inverse Document Frequency)
+ *
+ * Input is 62 books by The Brothers Grimm
+ *
+ * Algorithm applies 4 ETL steps to calculate - term-frequency, document-frequency, and inverse-term frequency
+ * and then uses the Matrix API to calculate similarity on step 5
  */
 class BookSimilarity(args : Args) extends Job(args) {
 
@@ -26,35 +27,54 @@ class BookSimilarity(args : Args) extends Job(args) {
   // Step 3 - Calculate the document-frequency - i.e. in how many books a word appears
   val df = tf.groupBy('word) { _.size('df)}
 
-  // Step 4 - Calculate inverse document-frequency
-  // By joing term-frequency with document-frequency
+  // Step 4 - Calculate tf-idf -> inverse document-frequency
+  // By joining term-frequency with document-frequency
   val number_of_books = 62
   val tfidf = tf
   .joinWithSmaller('word -> 'word, df)
-  .map(('df, 'tf) -> 'idf) {
+  .map(('tf, 'df) -> 'tfidf) {
     x:(Int,Int) =>
-      x._1 * math.log(number_of_books / x._2)
+      // term-frequency * inverse-document-frequency
+      x._1 * math.log(number_of_books / x._2) // idf = log ( N / df )
   }
-  .filter('idf) { x:Double => x > 0}
-  .project('book, 'word, 'idf)
-
-
-
-  // Let's write output to further understand what's happening in our ETL process
-  books.write(Tsv("data/output-books.tsv"))
-  tf.write(Tsv("data/output-tf.tsv"))
-  df.write(Tsv("data/output-df"))
-  tfidf.write(Tsv("data/output-tfidf"))
+  // When a word exists in ALL documents
+  // IDF = log ( D / tf ) = log (62/62) = log(1) = 0
+  // So the value 0 can be safely ignored
+  .filter('tfidf) { x:Double => x > 0}
+  .project('book, 'word, 'tfidf)
 
 
 
   // Step 5 - Calculate book - similarity
   import Matrix._
-  val booksMatrix = tfidf.toMatrix[String,String,Double]('book, 'word,'idf)
-  // Normalize the matrix -
-  val normedMatrix = booksMatrix.rowL2Normalize.write(Tsv("norm"))
-  val similarities = (normedMatrix * normedMatrix.transpose).pipe.toTypedPipe[(String, String, Double)](Fields.ALL)
+  val booksMatrix = tfidf.toMatrix[String,String,Double]('book, 'word,'tfidf)
+  // Normalize the matrix
+  val normedMatrix = booksMatrix.rowL2Normalize
+  val similarities = (normedMatrix * normedMatrix.transpose)
+    // when a matrix is transformed into a pipe it contains three columns of data
+    // 'row , 'col , 'val
+    .pipe
+    // Rename just for the shake of making code more readable :)
+    .rename(('row,'col,'val)->('book1,'book2,'similarity))
+    // We now have a full-matrix - that means that
+    // book1 - book1 - similarity=1.0
+    // book1 - book2 - similarity=0.6
+    // book2 - book1 - similarity=06
+    // We don't care that book1 is 100% similar to book1 :p
+    // Also the similarity of book1->book2 is always the same to book2->book1
+    // So let's filter out all irrelevant/duplicate data
+    .filter('book1, 'book2) { x:(String,String) => x._1 < x._2}
+    // groupAll - and sort by the most similar books (descending)
+    .groupAll { group => group.sortBy('similarity).reverse }
+    .write(Tsv("data/output-book-similarities.tsv"))
 
-  similarities.filter(s => s._1 < s._2).groupAll.sortBy(-_._3).values.write(TypedTsv[(String, String, Double)]("data/output-bookSimilarities.tsv"))
+
+
+  // Let's write output to further understand what's happening in our ETL process
+  books.write(Tsv("data/output-bs-books.tsv"))
+  tf.write(Tsv("data/output-bs-tf.tsv"))
+  df.write(Tsv("data/output-bs-df"))
+  tfidf.write(Tsv("data/output-bs-tfidf"))
+  normedMatrix.write(Tsv("data/output-bs-normed-matrix"))
 
 }
