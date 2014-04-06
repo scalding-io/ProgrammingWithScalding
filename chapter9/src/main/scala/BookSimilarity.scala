@@ -59,7 +59,7 @@ class BookSimilarity(args : Args) extends Job(args) {
     // We now have a full-matrix - that means that
     // book1 - book1 - similarity=1.0
     // book1 - book2 - similarity=0.6
-    // book2 - book1 - similarity=06
+    // book2 - book1 - similarity=0.6
     // We don't care that book1 is 100% similar to book1 :p
     // Also the similarity of book1->book2 is always the same to book2->book1
     // So let's filter out all irrelevant/duplicate data
