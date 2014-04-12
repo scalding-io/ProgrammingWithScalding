@@ -1,9 +1,13 @@
-import com.twitter.algebird.Ring
 import com.twitter.scalding._
 import com.twitter.scalding.mathematics.Matrix
+import com.twitter.algebird.Ring
 
-case class  ItemRatingVector(ratings: List[Double]) {
-  /** A vector of ratings for a given item by different users. *
+/**
+ * Reference code: https://gist.github.com/wibiclint/7711036
+ */
+
+/** A vector of ratings for a given item by different users. */
+case class ItemRatingVector(ratings: List[Double]) {
   def dotProductWith(that: ItemRatingVector): Double = {
     ratings.zip(that.ratings).map { pair => pair._1 * pair._2 }.sum
   }
@@ -45,7 +49,11 @@ case class RatingVectorPair(vecA: ItemRatingVector, vecB: ItemRatingVector) exte
 }
 
 object MatrixThingNull extends MatrixThing
-object RingImplicits {
+
+class PearsonCorrelationItemItem(args: Args) extends Job(args) {
+  import Matrix._
+  import com.twitter.scalding.mathematics.MatrixProduct._
+
   implicit object Ring extends Ring[MatrixThing] {
 
     /** Multiplication pairs together two ratings with the same user. */
@@ -70,12 +78,6 @@ object RingImplicits {
     override def zero = MatrixThingNull
     override def one = MatrixThingNull
   }
-}
-
-
-class PearsonCorrelationItemItem(args: Args) extends Job(args) {
-  import RingImplicits._
-  import Matrix._
 
   val matrix = IterableSource(List(
     // User, item, rating
@@ -83,14 +85,21 @@ class PearsonCorrelationItemItem(args: Args) extends Job(args) {
     ("Jane", "Coffee", 4.0),
     ("Emily", "Coffee", 5.0),
     ("Clint", "Coffee", 4.0),
+    ("Stefano", "Coffee", 2.0),
+    ("Antonios", "Coffee", 2.2),
     ("Jane", "Beer", 0.1),
     ("Emily", "Beer", 4.0),
-    ("Clint", "Beer", 5.0)), ('row, 'col, 'val))
+    ("Clint", "Beer", 5.0),
+    ("Stefano", "Beer", 4.0),
+    ("Antonios", "Beer", 0.01)
+  ), ('row, 'col, 'val))
     .map('val -> 'val) { v: Double => SingleRating(v) }
     .toMatrix[String, String, MatrixThing]('row, 'col, 'val)
 
-  (matrix.transpose * matrix)
+
+  (matrix * matrix.transpose)
     .mapValues { value: MatrixThing => value.calculateSimilarity }
-    .write( Tsv( args("output") ) )
-  */
+    .mapValues { value: Double => value }
+
+    .write( Tsv( "output" ) )
 }
