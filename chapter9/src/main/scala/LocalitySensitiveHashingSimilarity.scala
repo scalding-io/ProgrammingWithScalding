@@ -25,7 +25,7 @@ import com.twitter.algebird.{ MinHasher, MinHasher32, MinHashSignature }
  *                         items are considered similar
  *
  */
-class ItemSimilarity2(args: Args) extends Job(args) {
+class LocalitySensitiveHashingSimilarity(args: Args) extends Job(args) {
   import TDsl._
 
   val targetThreshold = args.optional("target_threshold")
