@@ -24,14 +24,9 @@ public class CascadingExample {
         Tap in = new FileTap(new TextDelimited(schema, false, "," ), "src/main/resources/products.tsv");
         Tap out = new FileTap(new TextDelimited(true, "\t"), "output" );
 
-
-        // Elastic Search configuration
-//        Properties properties = new Properties();
-//        properties.setProperty("es.mapping.id", "productID");
-//        properties.setProperty("es.write.operation","create");
-//        Tap out = new FileTap(new TextDelimited(), "output" );
-//        FlowConnector flow = new LocalFlowConnector(properties);
-//        flow.connect(in, out, new Pipe("write-to-ES")).complete();
+        Properties properties = new Properties();
+        FlowConnector flow = new LocalFlowConnector(properties);
+        flow.connect(in, out, new Pipe("write-to-ES")).complete();
 
     }
 }
