@@ -30,6 +30,21 @@
             <version>2.21</version>
         </dependency>
 
+        <!-- Mahout -->
+        <dependency>
+            <groupId>org.apache.mahout</groupId>
+            <artifactId>mahout-core</artifactId>
+            <version>0.9</version>
+        </dependency>
+        <!-- Add to use ClusterDumper -->
+        <dependency>
+            <groupId>org.apache.mahout</groupId>
+            <artifactId>mahout-integration</artifactId>
+            <version>0.9</version>
+        </dependency>
+
+
+
     </dependencies>
 
     <build>
