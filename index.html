@@ -1,79 +1,82 @@
 <!DOCTYPE html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Programmingmapreducewithscalding : ProgrammingMapReduceWithScalding " />
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Programmingmapreducewithscalding</title>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Programming Map Reduce With Scalding by scalding-io</title>
   </head>
 
   <body>
+    <div id="container">
+      <div class="inner">
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/scalding-io/ProgrammingMapReduceWithScalding">View on GitHub</a>
-
-          <h1 id="project_title">Programmingmapreducewithscalding</h1>
-          <h2 id="project_tagline">ProgrammingMapReduceWithScalding </h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/scalding-io/ProgrammingMapReduceWithScalding/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/scalding-io/ProgrammingMapReduceWithScalding/tarball/master">Download this project as a tar.gz file</a>
-            </section>
+        <header>
+          <h1>Programming Map Reduce With Scalding</h1>
+          <h2>Source code for PACKT Book &#39;Programming Map-Reduce With Scalding&#39;</h2>
         </header>
-    </div>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/scalding-io/ProgrammingMapReduceWithScalding/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/scalding-io/ProgrammingMapReduceWithScalding/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/scalding-io/ProgrammingMapReduceWithScalding" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+        <hr>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+        <section id="main_content">
+          <p>Page <a href="http://scalding-io.github.io/ProgrammingMapReduceWithScalding/">http://scalding-io.github.io/ProgrammingMapReduceWithScalding/</a></p>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>The book consists of 9 chapters </p>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
+<ul>
+<li><p><strong>Hadoop and Abstractions</strong> - 
+Introduction to Hadoop, Map Reduce, Pipelining, Cascading, Pig and Hive.
+Chapter presents benefits of higher level abstractions of Map Reduce (concepts and capabilities).</p></li>
+<li><p><strong>Get ready for Scalding</strong> -
+Theory about Scalding - the Scala Domain Specific Language utilising Cascading. 
+Development environment setup including local hadoop cluster for development.
+Execute the first <code>Hello World</code> Scalding example.</p></li>
+<li><p><strong>Scalding reference examples</strong> -
+The core capabilities of scalding: i) Map-like functions, ii) Grouping/reducing functions iii) Join operations </p></li>
+<li><p><strong>Advanced concepts-Intermediate examples</strong> -
+A Scalding log processing flow for a News company, aggregating multiple sources will be presented. 
+Through an example with multiple pipe-lines some more advanced concepts are presented.</p></li>
+<li><p><strong>Development Patterns and Best Practices</strong> -
+Presents interesting design patterns to overcome common issues and add more capabilities into Scalding.
+This chapter presents the External Operations pattern, the Dependency Injection pattern and the Late Bound Dependency pattern</p></li>
+<li><p><strong>Testing &amp; TDD</strong> -
+Best practices of first defining behaviour (<em>Behaviour Driven Development</em>) then tests (<em>Test Driven Development</em>) and then completing the implementation. How to write unit, integration tests and also apply Black-box testing methodologies in the context of Big Data.</p></li>
+<li><p><strong>Running in Production</strong> -
+Introduction to Distributed Cache and Hadoop production system deployment and execution. 
+Handling multiple HDFS sources: text, avro, csv, etc. 
+How to monitor and maintain cluster stability.</p></li>
+<li><p><strong>External data stores</strong> -
+Interaction with external external SQL, NOSQL and in-memory applications like MemCache , Solr, ElasticSearch.
+Code for accessing SQL databases </p></li>
+<li><p><strong>Machine Learning</strong> - 
+Machine Learning and Recommendation systems - Pattern - PMML - Mahout.
+An example in Scalding for processing visits to an e-commerce site with Mahout/Pattern 
+to generate recommendations and store them into a real-time no-sql database.</p></li>
+</ul><h3>
 <a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>Antonios Antonios Chalkiopoulos (<a href="https://github.com/antwnis" class="user-mention">@antwnis</a>), Stefano Galarraga (<a href="https://github.com/galarragas" class="user-mention">@galarragas</a>).</p>
+        </section>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+        <footer>
+          Programming Map Reduce With Scalding is maintained by <a href="https://github.com/scalding-io">scalding-io</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
+        
+      </div>
     </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Programmingmapreducewithscalding maintained by <a href="https://github.com/scalding-io">scalding-io</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
   </body>
 </html>
