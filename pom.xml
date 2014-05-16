@@ -207,6 +207,14 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Cascading 'Driven' monitoring tool -->
+        <dependency>
+            <groupId>driven</groupId>
+            <artifactId>driven-plugin</artifactId>
+            <version>1.0-eap-57</version>
+            <classifier>io</classifier>
+        </dependency>
+
         <!-- TODO - Check if required
         <dependency>
             <groupId>org.scalatest</groupId>
