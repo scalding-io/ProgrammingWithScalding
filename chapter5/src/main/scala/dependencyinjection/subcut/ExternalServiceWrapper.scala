@@ -15,5 +15,4 @@ object ExternalServiceWrapper {
   implicit class ExternalServiceWrapper(val self: Pipe)(implicit val bindingModule: BindingModule) extends ExampleOperations with Injectable with Serializable {
     lazy val externalService = inject[ExternalService]
   }
-
 }

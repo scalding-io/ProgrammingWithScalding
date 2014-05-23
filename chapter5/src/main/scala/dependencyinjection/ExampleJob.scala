@@ -5,7 +5,7 @@ import com.twitter.scalding._
 /**
  * Example job that uses Dependency Injection
  */
-class ExampleJob(args: Args) extends Job(args) {
+class ExampleJob (args: Args) extends Job(args) {
 
   // import schema and wrapper
   import ExampleSchema._
