@@ -1,0 +1,8 @@
+2014-07-01 11:05:00	user1	readArticle	sports/football/3	session	lat,lon	response	PC	error
+2014-07-01 09:05:00	user1	readArticle	sports/football/2	session	lat,lon	response	PC	error
+2014-07-01 09:03:50	user1	streamVideo	sports/football/11	session	lat,lon	response	PC	error
+2014-07-01 09:02:30	user1	readArticle	sports/football/11	session	lat,lon	response	PC	error
+2014-07-01 09:01:00	user1	readArticle	sports/football/4	session	lat,lon	response	PC	error
+2014-07-01 09:00:20	user1	readArticle	sports/rugby/7	session	lat,lon	response	PC	error
+2014-07-01 09:00:05	user1	readArticle	sports/rugby/12	session	lat,lon	response	PC	error
+2014-07-01 09:00:00	user1	login	-	session	lat,lon	response	PC	error
