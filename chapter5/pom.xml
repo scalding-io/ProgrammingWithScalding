@@ -12,6 +12,11 @@
 
     <artifactId>chapter5</artifactId>
 
+    <properties>
+        <scalding.version>0.10.0</scalding.version>
+        <scalding-commons.version>0.2.0</scalding-commons.version>
+    </properties>
+
     <dependencies>
 
         <!-- Scalding -->
@@ -19,6 +24,11 @@
             <groupId>com.twitter</groupId>
             <artifactId>scalding-date_${scala.scalding.version}</artifactId>
             <version>${scalding.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.twitter</groupId>
+            <artifactId>scalding-commons_2.10</artifactId>
+            <version>${scalding-commons.version}</version>
         </dependency>
 
         <dependency>
@@ -52,7 +62,7 @@
         <dependency>
             <groupId>parallelai</groupId>
             <artifactId>parallelai.spyglass</artifactId>
-            <version>2.10.2_4.1.0</version>
+            <version>${spyglass.version}</version>
         </dependency>
 
         <dependency>
@@ -66,6 +76,9 @@
             <artifactId>subcut_2.10</artifactId>
             <version>2.0</version>
         </dependency>
+
+
+
     </dependencies>
 
     <build>
