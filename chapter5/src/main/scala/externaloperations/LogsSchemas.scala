@@ -9,6 +9,6 @@ package object LogsSchemas {
   val LOGS_DAILY_VISITS = ('day, 'user, 'visits)
 
   // i.e. hdfs:///logs/daily-visits-with-address/YYYY/MM/DD/
-  val LOG_DAILY_WITH_ADDRESS = List('day, 'user, 'email, 'address, 'visits)
+  val LOG_DAILY_WITH_ADDRESS = List('day, 'user, 'visits, 'email, 'address)
 
 }
