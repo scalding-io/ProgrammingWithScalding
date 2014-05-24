@@ -7,9 +7,9 @@ trait ExternalService {
   def getUserInfo(userId: String): UserInfo
 }
 
-// NOTE: This class is NOT serializable
 class ExternalServiceImpl extends ExternalService {
   def getUserInfo(userId: String): UserInfo = UserInfo("email", "address")
 }
 
+// NOTE: This class is NOT serializable
 case class UserInfo(email: String, address: String)

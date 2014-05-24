@@ -12,42 +12,9 @@
 
     <artifactId>chapter5</artifactId>
 
-    <properties>
-        <scalding.version>0.10.0</scalding.version>
-        <scalding-commons.version>0.2.0</scalding-commons.version>
-    </properties>
-
     <dependencies>
 
-        <!-- Scalding -->
-        <dependency>
-            <groupId>com.twitter</groupId>
-            <artifactId>scalding-date_${scala.scalding.version}</artifactId>
-            <version>${scalding.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.twitter</groupId>
-            <artifactId>scalding-commons_2.10</artifactId>
-            <version>${scalding-commons.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.twitter</groupId>
-            <artifactId>util_2.10</artifactId>
-            <version>6.5.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.typesafe</groupId>
-            <artifactId>config</artifactId>
-            <version>${typesafe.config.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-
+        <!-- Joda for time conversions -->
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
@@ -59,60 +26,13 @@
             <version>1.5</version>
         </dependency>
 
-        <dependency>
-            <groupId>parallelai</groupId>
-            <artifactId>parallelai.spyglass</artifactId>
-            <version>${spyglass.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.pragmasoft</groupId>
-            <artifactId>scalding-unit</artifactId>
-            <version>0.5</version>
-        </dependency>
-
+        <!-- SubCut Dependency Injection framework -->
         <dependency>
             <groupId>com.escalatesoft.subcut</groupId>
             <artifactId>subcut_2.10</artifactId>
             <version>2.0</version>
         </dependency>
 
-
-
     </dependencies>
-
-    <build>
-        <!--<testSourceDirectory>src/test/scala</testSourceDirectory>-->
-        <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy-dependencies</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>./alternateLocation</outputDirectory>
-                            <!-- ${project.build.directory} -->
-                            <overWriteReleases>false</overWriteReleases>
-                            <overWriteSnapshots>false</overWriteSnapshots>
-                            <overWriteIfNewer>true</overWriteIfNewer>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

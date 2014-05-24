@@ -16,5 +16,7 @@ trait ExampleOperations extends FieldConversions with TupleConversions {
 
   // Joins with userData to add email and address
   def addUserInfo: Pipe = self.map('user ->('email, 'address))
-    { userId: String => externalService.getUserInfo(userId)}
+    { userId: String => val userInfo = externalService.getUserInfo(userId)
+      (userInfo)
+    }
 }

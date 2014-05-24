@@ -13,7 +13,7 @@ import dependencyinjection.{ExternalServiceImpl, ExternalService, ExampleSchema}
  */
 class ExampleJob(args: Args) extends Job(args) {
     import ExampleSchema._
-    import ExternalServiceWrapper._
+    import LateBoundSubcutWrapper._
     import NewSerializableBindingModule._
 
     implicit val bindingModule = newSerializableBindingModule { bindingModule =>

@@ -1,9 +1,7 @@
-Compile examples with:
+The 'External Operations' is a basic pattern that plays an important role in the
+proper unit testing of Scalding applications as seen in the following chapter.
+Also it serves as the basic of the 'Dependency Injection' and 'Late Bound' patters
 
-    chapter5 $ mvn clean install
+Run with
 
-and execute external operations design pattern with 
-
-    chapter5 $ java -cp target/chapter5-0-jar-with-dependencies.jar 
-     com.twitter.scalding.Tool externaloperations.SimpleJob --local 
-     --logs src/main/resources/logs.tsv --users src/main/resources/users.tsv --output output.txt
+    chapter5 $ ./runExternalOperations.sh

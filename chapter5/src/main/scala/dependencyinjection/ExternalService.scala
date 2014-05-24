@@ -10,7 +10,3 @@ trait ExternalService {
 class ExternalServiceImpl extends ExternalService {
   def getUserInfo(userId: String) = ("email", "address")
 }
-
-// NOTE: This class is NOT serializable
-
-//case class UserInfo(email: String, address: String)

@@ -9,10 +9,10 @@ import latebound.{ExampleOperations, ExternalService}
  * In this example we are demonstrating how to use the framework 'subcut'
  *  to make a dependency injection
  */
-object ExternalServiceWrapper {
-  implicit def wrapPipe(richPipe: RichPipe)(implicit bindingModule: BindingModule) = new ExternalServiceWrapper(richPipe.pipe)
+object LateBoundSubcutWrapper {
+  implicit def wrapPipe(richPipe: RichPipe)(implicit bindingModule: BindingModule) = new LateBoundSubcutWrapper(richPipe.pipe)
 
-  implicit class ExternalServiceWrapper(val self: Pipe)(implicit val bindingModule: BindingModule) extends ExampleOperations with Injectable with Serializable {
+  implicit class LateBoundSubcutWrapper(val self: Pipe)(implicit val bindingModule: BindingModule) extends ExampleOperations with Injectable with Serializable {
     lazy val externalService = inject[ExternalService]
   }
 }
