@@ -80,7 +80,7 @@
         <repository>
             <id>cloudera-chd4</id>
             <name>Cloudera Maven Repository</name>
-            <url>https://repository.cloudera.com/content/repositories/releases/</url>
+            <url>http://repository.cloudera.com/content/repositories/releases/</url>
         </repository>
     </repositories>
 
@@ -125,10 +125,13 @@
         <scalatest.version>2.0.RC1</scalatest.version>
         <scalatest.version>2.0</scalatest.version>
         <!-- IMPORTANT ;-) -->
-        <scalding.version>0.9.1</scalding.version>
-        <scalding-commons.version>0.9.1</scalding-commons.version>
+        <scalding.version>0.10.0</scalding.version>
+        <scalding-commons.version>0.10.0</scalding-commons.version>
+        <!--<scalding.version>0.9.1</scalding.version>-->
+        <!--<scalding-commons.version>0.9.1</scalding-commons.version>-->
         <scalding-core.version>0.9.1</scalding-core.version>
         <servlet-api-version>3.1.0</servlet-api-version>
+        <spyglass.version>2.10_0.10_4.3</spyglass.version>
         <simpleLatLng.version>1.3.0</simpleLatLng.version>
         <slf4j.log4j12.version>1.6.2</slf4j.log4j12.version>
         <slf4j-api.version>1.7.5</slf4j-api.version>
@@ -168,7 +171,7 @@
         <dependency>
             <groupId>com.twitter</groupId>
             <artifactId>scalding-commons_2.10</artifactId>
-            <version>${scalding.version}</version>
+            <version>${scalding-commons.version}</version>
         </dependency>
 
         <!-- Hadoop -->
@@ -213,6 +216,13 @@
             <artifactId>driven-plugin</artifactId>
             <version>1.0-eap-57</version>
             <classifier>io</classifier>
+        </dependency>
+
+        <!-- For Scalding 0.10.0 -->
+        <dependency>
+            <groupId>com.twitter</groupId>
+            <artifactId>chill_2.10</artifactId>
+            <version>0.3.6</version>
         </dependency>
 
         <!-- TODO - Check if required
@@ -296,6 +306,27 @@
                         </fileset>
                     </filesets>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>./alternateLocation</outputDirectory>
+                            <!-- ${project.build.directory} -->
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
         </plugins>
