@@ -1,24 +1,33 @@
 package unit
 
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.{ShouldMatchers, Matchers, FlatSpec}
 import com.twitter.scalding.{TupleConversions, RichPipe}
 import scala.collection.mutable
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
-import com.pragmasoft.scaldingunit.TestInfrastructure
+import com.twitter.scalding.bdd.BddDsl
+
 import org.scalautils.Uniformity
-import org.scalatest.matchers._
-import tdd.SampleJobPipeTransformations._
-import tdd.schemas
-import schemas._
+import tdd.ExampleWrapper
+import tdd.ExampleSchema
+import tdd.ExampleOperations
+import cascading.pipe.Pipe
+
+import com.pragmasoft.scaldingunit.TestInfrastructure
 
 @RunWith(classOf[JUnitRunner])
-class SampleJobPipeTransformationsScalaTestSpec extends FlatSpec with Matchers with TupleConversions with TestInfrastructure {
+class ExampleOperationsUnitTests extends FlatSpec with Matchers with TestInfrastructure {
+
+  import ExampleSchema._
+  import ExampleWrapper._
+  import ExampleOperations._
+
+
   "A sample job pipe transformation" should "add column with day of event" in {
     Given {
-      List(("12/02/2013 10:22:11", 1000002l, "http://www.youtube.com")) withSchema INPUT_SCHEMA
+      List(("12/02/2013 10:22:11", 1000002l, "http://www.youtube.com")) withSchema LOG_SCHEMA
     } When {
-      pipe: RichPipe => pipe.addDayColumn
+      pipe:Pipe => pipe.addDayColumn
     } Then {
       buffer: mutable.Buffer[(String, Long, String, String)] =>
         buffer.toList(0) should equal (("12/02/2013 10:22:11", 1000002l, "http://www.youtube.com", "2013/02/12"))
@@ -48,9 +57,9 @@ class SampleJobPipeTransformationsScalaTestSpec extends FlatSpec with Matchers w
         ("15/02/2013 10:22:11", 1000003l, "http://www.youtube.com", "2013/02/15"),
         ("15/02/2013 10:22:11", 1000001l, "http://www.google.com", "2013/02/15"),
         ("15/02/2013 10:22:11", 1000002l, "http://www.youtube.com", "2013/02/15")
-      ) withSchema WITH_DAY_SCHEMA
+      ) withSchema ('datetime,'user,'url,'day)
     } When {
-      pipe: RichPipe => pipe.countUserEventsPerDay
+      pipe: Pipe => pipe.countUserEventsPerDay
     } Then {
       buffer: mutable.Buffer[(String, Long, Long)] =>
         buffer.toList should equal (List(
@@ -65,11 +74,11 @@ class SampleJobPipeTransformationsScalaTestSpec extends FlatSpec with Matchers w
 
   it should "add user info" in {
     Given {
-      List(("2013/02/11", 1000002l, 1l)) withSchema EVENT_COUNT_SCHEMA
+      List(("2013/02/11", 1000002l, 1l)) withSchema LOGS_DAILY_VISITS
     } And {
-      List((1000002l, "stefano@email.com", "10 Downing St. London")) withSchema USER_DATA_SCHEMA
+      List((1000002l, "stefano@email.com", "10 Downing St. London")) withSchema USER_SCHEMA
     } When {
-      (eventCount: RichPipe, userData: RichPipe) => eventCount.addUserInfo(userData)
+      (eventCount: Pipe, userData: Pipe) => eventCount.addUserInfo(userData)
     } Then {
       buffer: mutable.Buffer[(String, Long, String, String, Long)] =>
         buffer.toList should equal (List(("2013/02/11", 1000002l, "stefano@email.com", "10 Downing St. London", 1l)))

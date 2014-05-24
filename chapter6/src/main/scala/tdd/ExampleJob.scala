@@ -1,12 +1,11 @@
-package externaloperations
+package tdd
 
 import com.twitter.scalding._
+import com.twitter.scalding.Tsv
 
 class ExampleJob(args: Args) extends Job(args) {
-  import LogsWrapper._
-  import UserWrapper._
-  import LogsSchemas._
-  import UserSchemas._
+  import ExampleSchema._
+  import tdd.ExampleWrapper._
 
   val dailyVisits = Tsv(args("input"), LOG_SCHEMA).read
     .logsAddDayColumn
