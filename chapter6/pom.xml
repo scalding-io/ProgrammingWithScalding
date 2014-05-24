@@ -25,11 +25,16 @@
             <version>1.5</version>
         </dependency>
 
+        <!--
+            Import ScaldingUnit if you are using a version of Scalding older than 0.9 since the BddDsl
+            package was included just in 0.9
+
         <dependency>
             <groupId>com.pragmasoft</groupId>
             <artifactId>scalding-unit</artifactId>
-            <version>0.5-scalding0.9</version>
+            <version>0.5</version>
         </dependency>
+        -->
 
     </dependencies>
 

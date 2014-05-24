@@ -5,29 +5,24 @@ import com.twitter.scalding.{TupleConversions, RichPipe}
 import scala.collection.mutable
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
-import com.twitter.scalding.bdd.BddDsl
 
 import org.scalautils.Uniformity
 import tdd.ExampleWrapper
 import tdd.ExampleSchema
-import tdd.ExampleOperations
 import cascading.pipe.Pipe
 
-import com.pragmasoft.scaldingunit.TestInfrastructure
+import ExampleSchema._
+import ExampleWrapper._
+import com.twitter.scalding.bdd.BddDsl
 
 @RunWith(classOf[JUnitRunner])
-class ExampleOperationsUnitTests extends FlatSpec with Matchers with TestInfrastructure {
-
-  import ExampleSchema._
-  import ExampleWrapper._
-  import ExampleOperations._
-
+class ExampleOperationsUnitTests extends FlatSpec with Matchers with BddDsl {
 
   "A sample job pipe transformation" should "add column with day of event" in {
     Given {
       List(("12/02/2013 10:22:11", 1000002l, "http://www.youtube.com")) withSchema LOG_SCHEMA
     } When {
-      pipe:Pipe => pipe.addDayColumn
+      pipe:Pipe => pipe.logsAddDayColumn
     } Then {
       buffer: mutable.Buffer[(String, Long, String, String)] =>
         buffer.toList(0) should equal (("12/02/2013 10:22:11", 1000002l, "http://www.youtube.com", "2013/02/12"))
@@ -59,7 +54,7 @@ class ExampleOperationsUnitTests extends FlatSpec with Matchers with TestInfrast
         ("15/02/2013 10:22:11", 1000002l, "http://www.youtube.com", "2013/02/15")
       ) withSchema ('datetime,'user,'url,'day)
     } When {
-      pipe: Pipe => pipe.countUserEventsPerDay
+      pipe: Pipe => pipe.logsCountVisits
     } Then {
       buffer: mutable.Buffer[(String, Long, Long)] =>
         buffer.toList should equal (List(
@@ -78,7 +73,7 @@ class ExampleOperationsUnitTests extends FlatSpec with Matchers with TestInfrast
     } And {
       List((1000002l, "stefano@email.com", "10 Downing St. London")) withSchema USER_SCHEMA
     } When {
-      (eventCount: Pipe, userData: Pipe) => eventCount.addUserInfo(userData)
+      (eventCount: Pipe, userData: Pipe) => eventCount.logsJoinWithUsers(userData)
     } Then {
       buffer: mutable.Buffer[(String, Long, String, String, Long)] =>
         buffer.toList should equal (List(("2013/02/11", 1000002l, "stefano@email.com", "10 Downing St. London", 1l)))
