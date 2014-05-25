@@ -9,6 +9,6 @@ import com.twitter.scalding.RichPipe
 object ExternalServiceWrapper {
 
     implicit class ExampleServiceWrapper(val self: Pipe)(implicit val externalService : ExternalService) extends ExampleOperations with Serializable
-    implicit def fromRichPipe(rp: RichPipe)(implicit externalService : ExternalService) = new ExampleServiceWrapper(rp.pipe)
+    implicit def fromRichPipe(rp: RichPipe)(implicit externalService : ExternalService) = new ExampleServiceWrapper(rp.pipe)(externalService)
 
 }

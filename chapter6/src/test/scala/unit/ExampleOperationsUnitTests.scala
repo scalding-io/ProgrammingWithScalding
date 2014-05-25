@@ -1,7 +1,6 @@
 package unit
 
-import org.scalatest.{ShouldMatchers, Matchers, FlatSpec}
-import com.twitter.scalding.{TupleConversions, RichPipe}
+import org.scalatest.{Matchers, FlatSpec}
 import scala.collection.mutable
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
@@ -75,8 +74,8 @@ class ExampleOperationsUnitTests extends FlatSpec with Matchers with BddDsl {
     } When {
       (eventCount: Pipe, userData: Pipe) => eventCount.logsJoinWithUsers(userData)
     } Then {
-      buffer: mutable.Buffer[(String, Long, String, String, Long)] =>
-        buffer.toList should equal (List(("2013/02/11", 1000002l, "stefano@email.com", "10 Downing St. London", 1l)))
+      buffer: mutable.Buffer[(String, Long, Long, String, String)] =>
+        buffer.toList should equal (List(("2013/02/11", 1000002l, 1l, "stefano@email.com", "10 Downing St. London")))
     }
   }
 }

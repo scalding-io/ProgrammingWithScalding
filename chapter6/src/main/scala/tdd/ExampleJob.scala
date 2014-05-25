@@ -10,12 +10,12 @@ class ExampleJob(args: Args) extends Job(args) {
   val dailyVisits = Tsv(args("input"), LOG_SCHEMA).read
     .logsAddDayColumn
     .logsCountVisits
-    .write(Tsv(args("output")+"/logs-daily-visits.tsv", LOGS_DAILY_VISITS))
+    .write(Tsv(args("output1"), LOGS_DAILY_VISITS))
 
   val visitsPerDay = Tsv(args("input"), LOG_SCHEMA).read
     .logsAddDayColumn
     .logsCountVisits
     .logsJoinWithUsers(Tsv(args("users"), USER_SCHEMA).read)
-    .write(Tsv(args("output")+"/logs-visits-per-day.tsv",LOG_DAILY_WITH_ADDRESS))
+    .write(Tsv(args("output2"),LOG_DAILY_WITH_ADDRESS))
 
 }

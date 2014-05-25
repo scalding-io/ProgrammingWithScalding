@@ -1,8 +1,9 @@
 package tdd
 
 import cascading.pipe.Pipe
-import com.twitter.scalding.{RichPipe, Dsl}
+import com.twitter.scalding.Dsl
 import Dsl._
+import tdd.ExampleSchema._
 
 trait ExampleOperations {
   def pipe: Pipe
@@ -19,6 +20,8 @@ trait ExampleOperations {
   def logsCountVisits : Pipe = pipe
     .groupBy(('day, 'user)) { _.size('visits) }
 
-  def logsJoinWithUsers(userData: Pipe) : Pipe =
-    pipe.joinWithLarger('user -> 'user, userData)
+  def logsJoinWithUsers(userData: Pipe) : Pipe = pipe
+    .joinWithLarger('user -> 'user, userData)
+    .project(LOG_DAILY_WITH_ADDRESS)
+
 }
