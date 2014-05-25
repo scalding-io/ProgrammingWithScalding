@@ -10,7 +10,7 @@
     <version>0</version>
     <packaging>pom</packaging>
 
-    <name>Programming Map-Reduce with Scalding</name>
+    <name>PACKT - Map-Reduce with Scalding</name>
     <description>tbd</description>
 
     <modules>
@@ -122,8 +122,7 @@
         <scala.full.version>2.10.2</scala.full.version>
         <scala.scalding.version>2.10</scala.scalding.version>
         <scalatest-maven-plugin.version>1.0-M2</scalatest-maven-plugin.version>
-        <scalatest.version>2.0.RC1</scalatest.version>
-        <scalatest.version>2.0</scalatest.version>
+        <scalatest.version>2.1.7</scalatest.version>
         <!-- IMPORTANT ;-) -->
         <scalding.version>0.10.0</scalding.version>
         <scalding-commons.version>0.10.0</scalding-commons.version>
@@ -210,14 +209,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Cascading 'Driven' monitoring tool -->
-        <dependency>
-            <groupId>driven</groupId>
-            <artifactId>driven-plugin</artifactId>
-            <version>1.0-eap-57</version>
-            <classifier>io</classifier>
-        </dependency>
-
         <!-- For Scalding 0.10.0 -->
         <dependency>
             <groupId>com.twitter</groupId>
@@ -225,28 +216,24 @@
             <version>0.3.6</version>
         </dependency>
 
-        <!-- TODO - Check if required
-        <dependency>
-            <groupId>org.scalatest</groupId>
-            <artifactId>scalatest-maven-plugin</artifactId>
-            <version>${scalatest-maven-plugin.version}</version>
-            <scope>test</scope>
-        </dependency>
-        -->
-
-        <!--
-        <dependency>
-            <groupId>com.typesafe</groupId>
-            <artifactId>config</artifactId>
-            <version>${typesafe.config.version}</version>
-        </dependency>
-        -->
     </dependencies>
 
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>
+        <testSourceDirectory>src/test/scala</testSourceDirectory>
 
         <plugins>
+            <plugin>
+                <groupId>org.scala-tools</groupId>
+                <artifactId>maven-scala-plugin</artifactId>
+                <version>2.14.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.16</version>
+            </plugin>
+
             <!--   IMPORTANT: Requires Maven 3.0+
             The plugin was renamed to from maven-scala-plugin into
             scala-maven-plugin to respect the new maven naming policy for plugins.
@@ -258,9 +245,17 @@
                 <version>3.1.6</version>
                 <executions>
                     <execution>
+                        <id>compile-scala</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>compile-tests-scala</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>testCompile</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -269,6 +264,50 @@
                     <recompileMode>incremental</recompileMode>
                     <useZincServer>true</useZincServer>
                 </configuration> -->
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+
+            <!-- Define in the include patterns of Unit and Job test cases -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.16</version>
+                <executions>
+                    <execution>
+                        <id>surefire-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <disableXmlReport>true</disableXmlReport>
+                    <includes>
+                        <include>**/*Test*</include>
+                        <include>**/*Spec*</include>
+                    </includes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- Fat Jar: This plugin assembles a Fat-Jar that contains all the dependencies and libs -->
@@ -320,7 +359,6 @@
                         </goals>
                         <configuration>
                             <outputDirectory>./alternateLocation</outputDirectory>
-                            <!-- ${project.build.directory} -->
                             <overWriteReleases>false</overWriteReleases>
                             <overWriteSnapshots>false</overWriteSnapshots>
                             <overWriteIfNewer>true</overWriteIfNewer>
@@ -329,7 +367,26 @@
                 </executions>
             </plugin>
 
+            <plugin>
+                <groupId>org.scalatest</groupId>
+                <artifactId>scalatest-maven-plugin</artifactId>
+                <version>${scalatest-maven-plugin.version}</version>
+                <configuration>
+                    <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+                    <stdout>W</stdout> <!-- Skip coloring output -->
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>scala-test</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
+
 
     </build>
 

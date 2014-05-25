@@ -16,5 +16,6 @@ project/plugins/project/
 *.iml
 
 /chapter*/alternateLocation/
+alternateLocation/
 /chapter*/data/output-*
 .DS_Store
