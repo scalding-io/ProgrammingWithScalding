@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>chapter7</artifactId>
+    <name>Chapter 7 - Running in Production</name>
 
     <dependencies>
 
@@ -51,7 +52,7 @@
         <dependency>
             <groupId>parallelai</groupId>
             <artifactId>parallelai.spyglass</artifactId>
-            <version>2.10.2_4.1.0</version>
+            <version>${spyglass.version}</version>
         </dependency>
 
         <dependency>
@@ -64,6 +65,14 @@
             <groupId>com.github.nscala-time</groupId>
             <artifactId>nscala-time_2.10</artifactId>
             <version>0.6.0</version>
+        </dependency>
+
+        <!-- Cascading 'Driven' monitoring tool -->
+        <dependency>
+            <groupId>driven</groupId>
+            <artifactId>driven-plugin</artifactId>
+            <version>1.0-eap-57</version>
+            <classifier>io</classifier>
         </dependency>
 
         <dependency>

@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>chapter9</artifactId>
-    <packaging>jar</packaging>
+    <name>Chapter 9 - Machine Learning</name>
 
     <dependencies>
         <dependency>

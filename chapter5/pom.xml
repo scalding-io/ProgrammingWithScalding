@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>chapter5</artifactId>
+    <name>Chapter 5 - Scalding Design Patterns</name>
 
     <dependencies>
 

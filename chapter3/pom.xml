@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>chapter3</artifactId>
+    <name>Chapter 3 - Scalding by Example</name>
 
     <!-- This POM contains extra dependencies & plugins for Avro file handling -->
     <!-- TODO : Clean up mess :) -->

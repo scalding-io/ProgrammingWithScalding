@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>chapter4</artifactId>
+    <name>Chapter 4 - Intermediate Examples</name>
 
     <dependencies>
 

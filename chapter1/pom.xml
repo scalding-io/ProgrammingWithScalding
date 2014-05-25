@@ -12,6 +12,7 @@
     </parent>
 
     <artifactId>chapter1</artifactId>
+    <name>Chapter 1 - Introduction to Map-Reduce</name>
 
     <!-- Chapter 1 is the only chapter using just Cascading & Java code .. -->
     <dependencies>

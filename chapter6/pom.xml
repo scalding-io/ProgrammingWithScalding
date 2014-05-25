@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>chapter6</artifactId>
+    <name>Chapter 6 - Testing and BDD</name>
 
     <dependencies>
 

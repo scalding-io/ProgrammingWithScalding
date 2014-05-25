@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>chapter2</artifactId>
+    <name>Chapter 2 - Get ready for Scalding</name>
 
     <!-- Nothing interesting here ! Everything is inherited from the parent pom  :-) -->
 
