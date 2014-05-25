@@ -2,17 +2,18 @@ package functional
 
 import com.twitter.scalding._
 import org.scalatest.{Matchers, FlatSpec}
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
 import scala.collection.mutable
 import tdd.{ExampleSchema, ExampleJob}
 
-@RunWith(classOf[JUnitRunner])
+//import org.junit.runner.RunWith
+//import org.scalatest.junit.JUnitRunner
+//@RunWith(classOf[JUnitRunner])
+
 class ExampleJobTest extends FlatSpec with Matchers with FieldConversions with TupleConversions {
 
   import ExampleSchema._
 
-  "A sample job" should "do the full transformation" in {
+  "FUNCTIONAL - A sample job" should "do the full transformation" in {
 
     JobTest(classOf[ExampleJob].getName)
       .arg("input", "input-logs")

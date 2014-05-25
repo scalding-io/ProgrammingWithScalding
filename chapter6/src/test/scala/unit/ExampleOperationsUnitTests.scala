@@ -2,8 +2,6 @@ package unit
 
 import org.scalatest.{Matchers, FlatSpec}
 import scala.collection.mutable
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
 
 import org.scalautils.Uniformity
 import tdd.ExampleWrapper
@@ -14,10 +12,13 @@ import ExampleSchema._
 import ExampleWrapper._
 import com.twitter.scalding.bdd.BddDsl
 
-@RunWith(classOf[JUnitRunner])
+//import org.junit.runner.RunWith
+//import org.scalatest.junit.JUnitRunner
+//@RunWith(classOf[JUnitRunner])
+
 class ExampleOperationsUnitTests extends FlatSpec with Matchers with BddDsl {
 
-  "A sample job pipe transformation" should "add column with day of event" in {
+  "UNIT - A sample job pipe transformation" should "add column with day of event" in {
     Given {
       List(("12/02/2013 10:22:11", 1000002l, "http://www.youtube.com")) withSchema LOG_SCHEMA
     } When {
