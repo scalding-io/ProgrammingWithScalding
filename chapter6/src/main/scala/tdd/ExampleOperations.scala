@@ -8,6 +8,12 @@ import tdd.ExampleSchema._
 trait ExampleOperations {
   def pipe: Pipe
 
+ /** In the context of Test-Driven-Development we will initially not provide an implementation
+     Once tests fail - then we will proceed with proper implementations
+  def logsAddDayColumn : Pipe = pipe
+  def logsCountVisits : Pipe = pipe
+  def logsJoinWithUsers(userData: Pipe) : Pipe = pipe
+   */
   val fmt = org.joda.time.format.DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss")
 
   def logsAddDayColumn : Pipe = {
@@ -23,5 +29,4 @@ trait ExampleOperations {
   def logsJoinWithUsers(userData: Pipe) : Pipe = pipe
     .joinWithLarger('user -> 'user, userData)
     .project(LOG_DAILY_WITH_ADDRESS)
-
 }

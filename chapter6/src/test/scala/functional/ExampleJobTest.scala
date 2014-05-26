@@ -13,7 +13,7 @@ class ExampleJobTest extends FlatSpec with Matchers with FieldConversions with T
 
   import ExampleSchema._
 
-  "FUNCTIONAL2 TEST - A sample job" should "do the full transformation" in {
+  "Functional-Test: A sample job" should "do the full transformation" in {
 
     val logs = List(
       ("01/07/2014 10:22:11", 1000002L, "http://youtube.com"),
@@ -33,13 +33,12 @@ class ExampleJobTest extends FlatSpec with Matchers with FieldConversions with T
     JobTest(classOf[ExampleJob].getName)
       .arg("input", "input-logs")
       .arg("users", "users-logs")
-      .arg("output1", "output-logs-daily-visits")
-      .arg("output2", "output-logs-daily-with-address")
+      .arg("output", "output-data")
       .source(Tsv("input-logs", LOG_SCHEMA), logs)
       .source(Tsv("users-logs", USER_SCHEMA), users)
-      .sink(Tsv("output-logs-daily-with-address", LOG_DAILY_WITH_ADDRESS)) {
+      .sink(Tsv("output-data", LOG_DAILY_WITH_ADDRESS)) {
         buffer: mutable.Buffer[(String, Long, Long, String, String)] =>
-          buffer.toList should equal(expectedOutput)
+          buffer should equal(expectedOutput)
       }
       .run // or .runHadoop
   }
