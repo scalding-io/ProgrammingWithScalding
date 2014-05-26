@@ -228,11 +228,6 @@
                 <artifactId>maven-scala-plugin</artifactId>
                 <version>2.14.2</version>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.16</version>
-            </plugin>
 
             <!--   IMPORTANT: Requires Maven 3.0+
             The plugin was renamed to from maven-scala-plugin into
