@@ -1,4 +1,4 @@
-package chainingjobs
+package coordinating
 
 /**
  * In this application add any application logic, like calling external web services to fetch data

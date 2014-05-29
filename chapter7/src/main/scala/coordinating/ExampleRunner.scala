@@ -1,9 +1,8 @@
-package chainingjobs
+package coordinating
 
 import org.slf4j.LoggerFactory
 import com.twitter.scalding.{Tool, Args}
 import org.apache.hadoop.util.ToolRunner
-import org.apache.hadoop.conf.Configuration
 
 /**
  * Every application will run in sequence in this file
@@ -12,15 +11,23 @@ import org.apache.hadoop.conf.Configuration
 object ExampleRunner extends App {
 
   val runnerArgs = Args(args)
-  val configuration = new Configuration
+  val configuration = new org.apache.hadoop.conf.Configuration
 
   val log = LoggerFactory.getLogger(this.getClass.getName)
+
+  log.info("Executing a [Scalding] Job - A")
+  ToolRunner.run(configuration, new Tool,
+    (classOf[JobA].getName :: runnerArgs.toList).toArray )
 
   log.info("Execute a [Scala] application")
   ScalaApp.main(null)
 
-  log.info("Executing a [Scalding] job]")
+  log.info("Let's run an external system command")
+  import sys.process._
+  "ls -la" !
+
+  log.info("Executing [Scalding] Job - B")
   ToolRunner.run(configuration, new Tool,
-    (classOf[ScaldingJob].getName :: runnerArgs.toList).toArray )
+    (classOf[JobB].getName :: runnerArgs.toList).toArray )
 
 }
