@@ -1,4 +1,5 @@
 package adtargeting
+
 import com.twitter.scalding._
 import org.joda.time.format.DateTimeFormat
 import org.joda.time.DateTimeZone
@@ -21,7 +22,7 @@ class CalculateDailyAdPoints (args: Args) extends Job(args) {
 //  val logs = IterableSource[(String,String,String,String,String,String,String,String,String)](input, ('datetime, 'user, 'activity, 'data,
 //    'session, 'location, 'response, 'device))
 
-  val logs = Csv(args("input"), ",", logSchema ).read
+  val logs = Tsv(args("input"), logSchema ).read
     .project('user,'datetime,'activity,'data)
     .map('datetime -> 'epoch) { x: String => toEpoch(x) }
     .insert('temp, 0L) // helper field for scanLeft
@@ -58,8 +59,9 @@ class CalculateDailyAdPoints (args: Args) extends Job(args) {
     .write(Tsv("log-files-with-duration"))
 
   val timezone = DateTimeZone.forID("Europe/London")
-  def toEpoch(dateTime: String, dateFormat: String = "yyyy-MM-dd HH:mm:ss") = {
-      val fmt = DateTimeFormat.forPattern(dateFormat).withZone(timezone)
+  val dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZ"
+  val fmt = DateTimeFormat.forPattern(dateFormat).withZone(timezone)
+  def toEpoch(dateTime: String) = {
       fmt.parseDateTime(dateTime).getMillis / 1000
   }
 }

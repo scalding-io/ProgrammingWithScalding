@@ -27,29 +27,18 @@
             <version>1.5</version>
         </dependency>
 
-        <!-- Check with Stefano: This is now pushed and accepted in Scalding main github repo
-             TODO: Use it instead of our own Scalding Unit -->
-        <dependency>
-            <groupId>com.github.nscala-time</groupId>
-            <artifactId>nscala-time_2.10</artifactId>
-            <version>0.6.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.pragmasoft</groupId>
-            <artifactId>scalding-unit</artifactId>
-            <version>0.5</version>
-        </dependency>
-        <dependency>
-            <groupId>thirdparty</groupId>
-            <artifactId>jgrapht-jdk1.6</artifactId>
-            <version>0.8.1</version>
-        </dependency>
-
         <!-- JSON -->
         <dependency>
             <groupId>com.cloudphysics</groupId>
             <artifactId>jerkson_2.10</artifactId>
             <version>0.6.3</version>
+        </dependency>
+
+        <!-- Cascading 'Driven' monitoring tool -->
+        <dependency>
+            <groupId>driven</groupId>
+            <artifactId>driven-plugin</artifactId>
+            <version>1.0-eap-59</version>
         </dependency>
 
     </dependencies>

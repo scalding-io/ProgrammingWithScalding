@@ -11,8 +11,6 @@ import org.joda.time.DateTime
  *
  * @author Antonios Chalkiopoulos - Antwnis@gmail.com
  *
- * @example java -cp chapter4-0-jar-with-dependencies.jar -Xmx10G com.twitter.scalding.Tool generatedata.CreateMockLogData --num.of.lines 35000000 --local
- *          Given that you have sufficient memory the 5GB file should be ready in 15-20 minutes
  */
 class CreateMockLogData(args: Args) extends Job(args) {
 

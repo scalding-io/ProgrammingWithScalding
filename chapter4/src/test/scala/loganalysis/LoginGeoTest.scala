@@ -2,7 +2,6 @@ package loganalysis
 
 import com.twitter.scalding._
 import org.scalatest._
-import loganalysis.LoginGeo
 
 //import org.junit.runner.RunWith
 //import org.scalatest.junit.JUnitRunner
