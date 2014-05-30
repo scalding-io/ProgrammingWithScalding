@@ -23,7 +23,7 @@
         <module>chapter7</module> <!-- Running Scalding in Production -->
         <module>chapter8</module> <!-- -->
         <module>chapter9</module> <!-- -->
-        <module>others</module> <!-- -->
+        <!-- <module>others</module>  -->
     </modules>
 
     <!-- Repositories -->
