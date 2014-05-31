@@ -1,9 +1,17 @@
 package jdbc
 
 import com.twitter.scalding._
+import com.twitter.scalding.jdbc._
 
 /**
  * See com.twitter.scalding.jdbc.JDBCTap
+ *
+ * Before running this example code - make sure mysql is listening at port 3306
+ * and that a database 'testdb' is already created i.e.
+ *
+ * mysql> CREATE DATABASE testdb;
+ *
+ * The table will be created for us by the Tap if it does not exist
  **/
 class JDBCExample (args: Args) extends Job(args) {
 
@@ -20,8 +28,8 @@ class JDBCExample (args: Args) extends Job(args) {
    )
 
    val connectUrl = "jdbc:mysql://localhost:3306/testdb"
-   val dbuser = "root"//"admin"
-   val dbpass = "alg0alg0"//"password"
+   val dbuser = "root"
+   val dbpass = "password"
    val adapter= "mysql"
    override def currentConfig = ConnectionSpec(connectUrl,dbuser,dbpass,adapter)
   }
@@ -44,7 +52,7 @@ class JDBCExample (args: Args) extends Job(args) {
 
   // Running this job multiple times, will generate multiple rows
 
-  // To read from that table we can do
+  //To read from that table we can do
   val read_from_mysql = MySQLTableSource.read
-    .write(Tsv("jdbc-output"))
+    .write(Tsv("data"))
 }
