@@ -41,7 +41,7 @@ class CreateMockLogData(args: Args) extends Job(args) {
     // Use randomness to generate a date-time from 1st Jan 2014 00:00:00 .. 1st Jan 2014 23:59:59
     val datetime = new DateTime(1388534400L*1000 + random.nextInt(86400*1000)).toString("yyyy-MM-dd'T'HH:mm:ss.SSSZZ") // Let's assume the ISO8601 is used
     // Assume that we will generate logs for 100 users
-    val user = x % 100
+    val user = x % 250000
     // Assume that 3 types of events are logged: login (5%), readArticle (80%) and streamVideo (15%)
     val r = random.nextInt(100)
     val activity = if (r < 5) "login" else if (r<85) "readArticle" else "streamVideo"

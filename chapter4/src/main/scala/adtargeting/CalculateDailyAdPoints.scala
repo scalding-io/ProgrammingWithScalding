@@ -36,6 +36,8 @@ class CalculateDailyAdPoints (args: Args) extends Job(args) {
             val duration = bufferedEpoch - epoch
             (epoch, duration)
         }
+        // to optimize performance use following:
+        //.reducers(100)
     }
     .map('duration->'duration)
       { x:Long => if ((x<0) || (x>1200)) 20 else x }
@@ -55,6 +57,8 @@ class CalculateDailyAdPoints (args: Args) extends Job(args) {
       (categories(0), categories(1))
     }
     .groupBy('user,'category,'subcategory) { group => group.sum[Int]('points) }
+    // to optimize performance use following:
+    //.groupBy('user,'category,'subcategory) { group => group.sum[Int]('points).reducers(3) }
     .debug
     .write(Tsv("log-files-with-duration"))
 
