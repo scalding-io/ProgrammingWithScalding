@@ -18,7 +18,7 @@ class JDBCExample (args: Args) extends Job(args) {
   /**
    * Definition of JDBCSource
    */
-  case object MySQLTableSource extends JDBCSource {
+  case object MySQLTableTap extends JDBCSource {
     override val tableName = "tableName"
     override val columns = List(
        varchar("user", 16),
@@ -48,11 +48,11 @@ class JDBCExample (args: Args) extends Job(args) {
   val jdbc_pipe =
     IterableSource[(String, String, String, Int)](inmemory_data, schema )
     .read
-    .write(MySQLTableSource)
+    .write(MySQLTableTap)
 
   // Running this job multiple times, will generate multiple rows
 
   //To read from that table we can do
-  val read_from_mysql = MySQLTableSource.read
+  val read_from_mysql = MySQLTableTap.read
     .write(Tsv("data"))
 }

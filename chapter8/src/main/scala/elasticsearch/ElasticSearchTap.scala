@@ -12,11 +12,12 @@ case class ElasticSearchTap(
    esHost :String,
    esPort :Int   ,
    esResource:String,
+   esQuery:String,
    esFields : Fields)
   extends Source {
 
   def createEsTap: Tap[_, _, _] =
-    new EsTap(esHost, esPort, esResource, esFields)
+    new EsTap(esHost, esPort, esResource, esQuery, esFields)
 
   override def createTap(readOrWrite: AccessMode)(implicit mode: Mode): Tap[_, _, _] = {
     mode match {

@@ -38,7 +38,7 @@
         <dependency>
             <groupId>driven</groupId>
             <artifactId>driven-plugin</artifactId>
-            <version>1.0-eap-57</version>
+            <version>1.0-eap-59</version>
             <classifier>io</classifier>
         </dependency>
 
