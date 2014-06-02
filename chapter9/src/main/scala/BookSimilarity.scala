@@ -7,7 +7,7 @@ import com.twitter.scalding.mathematics.Matrix
  * Input is 62 books by The Brothers Grimm
  *
  * Algorithm applies 4 ETL steps to calculate - term-frequency, document-frequency, and inverse-term frequency
- * and then uses the Matrix API to calculate similarity on step 5
+ * and then uses the Matrix API to calculate similarity on step 6
  */
 class BookSimilarity(args : Args) extends Job(args) {
 
@@ -20,22 +20,25 @@ class BookSimilarity(args : Args) extends Job(args) {
     }
    .project('book,'word)
 
-  // Step 2 - Calculate the term-frequency - i.e. how many times a word appears in a book
-  val tf = books.groupBy('book, 'word) { _.size('tf) }
-   .project('book,'word, 'tf)
+  // Step 2 - Calculate num of books. Later on we will crossWithTiny the result which is '62'
+  val numberOfBooks = books.unique('book)
+    .groupAll { _.size('numberOfBooks) }
 
-  // Step 3 - Calculate the document-frequency - i.e. in how many books a word appears
+  // Step 3 - Calculate the term-frequency - i.e. how many times a word appears in a book
+  val tf = books.groupBy('book, 'word) { _.size('tf) }
+   .project('book,'word, 'tf).crossWithTiny(numberOfBooks)
+
+  // Step 4 - Calculate the document-frequency - i.e. in how many books a word appears
   val df = tf.groupBy('word) { _.size('df)}
 
-  // Step 4 - Calculate tf-idf -> inverse document-frequency
+  // Step 5 - Calculate tf-idf -> inverse document-frequency
   // By joining term-frequency with document-frequency
-  val number_of_books = 62
   val tfidf = tf
   .joinWithSmaller('word -> 'word, df)
-  .map(('tf, 'df) -> 'tfidf) {
-    x:(Int,Int) =>
+  .map(('tf, 'df, 'numberOfBooks) -> 'tfidf) {
+    x:(Int,Int,Int) =>
       // term-frequency * inverse-document-frequency
-      x._1 * math.log(number_of_books / x._2) // idf = log ( N / df )
+      x._1 * math.log(x._3 / x._2) // idf = log ( N / df )
   }
   // When a word exists in ALL documents
   // IDF = log ( D / tf ) = log (62/62) = log(1) = 0
@@ -45,7 +48,7 @@ class BookSimilarity(args : Args) extends Job(args) {
 
 
 
-  // Step 5 - Calculate book - similarity
+  // Step 6 - Calculate book - similarity
   import Matrix._
   val booksMatrix = tfidf.toMatrix[String,String,Double]('book, 'word,'tfidf)
   // Normalize the matrix
@@ -75,6 +78,5 @@ class BookSimilarity(args : Args) extends Job(args) {
   tf.write(Tsv("data/output-bs-tf.tsv"))
   df.write(Tsv("data/output-bs-df"))
   tfidf.write(Tsv("data/output-bs-tfidf"))
-  normedMatrix.write(Tsv("data/output-bs-normed-matrix"))
 
 }

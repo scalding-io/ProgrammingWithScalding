@@ -45,7 +45,7 @@ class ETLJob(args: Args) extends Job(args) {
     ("user7", "4,0,0,0"))
 
   // Pipe to transform comma-separated features into a dense vector
-  val users_items =
+  val userFeatures =
     IterableSource[(String, String)](input, ('user -> 'features))
     .read
     .mapTo(('user, 'features) ->('user, 'vector)) {
@@ -62,7 +62,7 @@ class ETLJob(args: Args) extends Job(args) {
     .project('user -> 'vector)
 
   val out = WritableSequenceFile[Text, VectorWritable](KMConfig.MAHOUT_VECTORS, 'user -> 'vector)
-  users_items.write(out)
+  userFeatures.write(out)
 
 }
 
@@ -111,7 +111,7 @@ class FinalJob(args: Args) extends Job(args) {
 
   val finalCluster = WritableSequenceFile[IntWritable, ClusterWritable](finalClusterPath, 'clusterId -> 'cluster)
 
-  val cluster_center = finalCluster
+  val clusterCenter = finalCluster
     .read
     .map('cluster -> 'center) {
       x: ClusterWritable =>
@@ -121,7 +121,7 @@ class FinalJob(args: Args) extends Job(args) {
       }
 
   val userVectors  = WritableSequenceFile[Text, VectorWritable](KMConfig.MAHOUT_VECTORS, 'user -> 'vector)
-    .crossWithTiny(cluster_center)
+    .crossWithTiny(clusterCenter)
     .map(('center, 'vector) -> 'distance) {
       x:(DenseVector, VectorWritable) =>
         (new EuclideanDistanceMeasure()).distance(x._1, x._2.get)
