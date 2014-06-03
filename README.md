@@ -24,10 +24,6 @@ The core capabilities of scalding: i) Map-like functions, ii) Grouping/reducing 
 A Scalding log processing flow for a News company, aggregating multiple sources will be presented. 
 Through an example with multiple pipe-lines some more advanced concepts are presented.
 
-* **Development Patterns and Best Practices** -
-Presents interesting design patterns to overcome common issues and add more capabilities into Scalding.
-This chapter presents the External Operations pattern, the Dependency Injection pattern and the Late Bound Dependency pattern
-
 * **Scalding Design Patterns** -
 Interesting design patterns applicable to Scalding data processing applications. Using the 'External Operations' patters will enable us performing unit testing and structuring our applications in a modular way. 
  
