@@ -34,10 +34,8 @@ Best practices of first defining behaviour (_Behaviour Driven Development_) then
 Tips and tricks on how to execute and schedule jobs. Also how to co-ordinate the execution of Scalding/Scala/Java and even external system processes. Finally how to configure Scalding jobs using property files or Hadoop parameters, how to monitor and optimize jobs and other usefull tips.
 
 * **Using external data stores** -
-Interaction with external external SQL, NOSQL and in-memory applications like MemCache , Solr, ElasticSearch.
-Code for accessing SQL databases 
+Interaction with external external SQL, NOSQL and in-memory applications like HBase, SQL, ElasticSearch etc.
 
 * **Matrix Calculations and Machine Learning** - 
-Machine Learning and Recommendation systems - Pattern - PMML - Mahout.
-An example in Scalding for processing visits to an e-commerce site with Mahout/Pattern 
-to generate recommendations and store them into a real-time no-sql database.
+Matrix calculations using the Matrix API and algebird to calculate text similarity (TF-IDF) 
+and set similarity (Jaccard). Then another example on Mahout K-Means clustering and outlier detection.
