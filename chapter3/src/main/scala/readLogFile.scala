@@ -4,7 +4,7 @@ import scala.util.matching.Regex
 // readLogFile example
 class readLogFile(args: Args) extends Job(args) {
 
-    TextLine("data.log" ).read
+    TextLine( args("input")).read
       .mapTo('line -> ('productId, 'price, 'quantity)) { x: String => parseLine(x) }
       .write( Tsv( args("output")))
 

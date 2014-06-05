@@ -14,8 +14,6 @@
     <name>Chapter 3 - Scalding by Example</name>
 
     <!-- This POM contains extra dependencies & plugins for Avro file handling -->
-    <!-- TODO : Clean up mess :) -->
-
     <dependencies>
         <dependency>
             <groupId>com.twitter</groupId>
@@ -23,33 +21,34 @@
             <version>${scalding.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.gensler</groupId>
+            <artifactId>scalavro-core_2.10</artifactId>
+            <version>0.6.2</version>
+        </dependency>
+        <dependency>
             <groupId>com.cloudphysics</groupId>
             <artifactId>jerkson_2.10</artifactId>
             <version>0.6.3</version>
         </dependency>
 
-        <!-- Following 4 libraries for Avro support -->
-        <!--<dependency>-->
-            <!--<groupId>cascading.avro</groupId>-->
-            <!--<artifactId>avro-scheme</artifactId>-->
-            <!--<version>2.1.1</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.avro</groupId>-->
-            <!--<artifactId>avro</artifactId>-->
-            <!--<version>1.7.4</version>-->
-            <!-- <scope>provided</scope> -->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>cascading.avro</groupId>-->
-            <!--<artifactId>avro-scheme</artifactId>-->
-            <!--<version>2.1.2</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>com.gensler</groupId>-->
-            <!--<artifactId>scalavro-core_2.10</artifactId>-->
-            <!--<version>0.6.0</version>-->
-        <!--</dependency>-->
+        <!-- Following libraries are for experimentaions
+        <dependency>
+            <groupId>cascading.avro</groupId>
+            <artifactId>avro-scheme</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>
+            <version>1.7.4</version>
+             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>cascading.avro</groupId>
+            <artifactId>avro-scheme</artifactId>
+            <version>2.1.2</version>
+        </dependency>
+        -->
 
     </dependencies>
 
