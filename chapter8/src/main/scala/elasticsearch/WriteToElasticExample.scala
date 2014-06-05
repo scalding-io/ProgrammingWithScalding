@@ -1,6 +1,7 @@
 package elasticsearch
 
 import com.twitter.scalding._
+import cascading.tuple.Fields
 
 // ElasticSearch example
 class WriteToElasticExample(args: Args) extends Job(args) {
@@ -14,6 +15,6 @@ class WriteToElasticExample(args: Args) extends Job(args) {
   val schema = List('number, 'product, 'description)
   val indexNewDataInElasticSearch =
     IterableSource[(String,String, String)](someData, schema)
-      .write(ElasticSearchTap("localhost", 9200,"index_es/type_es", schema))
+      .write(ElasticSearchTap("localhost", 9200,"index_es/type_es","", schema))
 
 }

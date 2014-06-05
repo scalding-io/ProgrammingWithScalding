@@ -1,6 +1,6 @@
 package hbasespyglass
 
-import com.twitter.scalding.{TextLine, Job, Args}
+import com.twitter.scalding._
 import parallelai.spyglass.hbase.{HBaseSource, HBasePipeConversions}
 import cascading.tuple.Fields
 import parallelai.spyglass.hbase.HBaseConstants.SourceMode
@@ -33,7 +33,6 @@ class HBaseScanExample(args: Args) extends Job(args) with HBasePipeConversions {
     .read
     .fromBytesWritable(SCHEMA)
     .debug
-    .write(TSV("data/hbase.tsv"), writeHeader=true)
+    .write(Tsv("data/hbase.tsv", writeHeader=true))
 
-
-  }
+}
