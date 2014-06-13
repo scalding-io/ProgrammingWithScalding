@@ -105,6 +105,8 @@
 
     </dependencies>
 
+    <!--
+    Use if we want to transform an avro/idl source into the Java Avro Bean
     <build>
 
         <plugins>
@@ -122,8 +124,6 @@
                         <configuration>
                             <sourceDirectory>src/main/avro/</sourceDirectory>
                             <outputDirectory>src/main/java/</outputDirectory>
-                            <!--   <testSourceDirectory>${project.basedir}/src/test/avro/</testSourceDirectory>
-                             <testOutputDirectory>${project.basedir}/src/test/java/</testOutputDirectory> -->
                             <stringType>String</stringType>
                         </configuration>
                     </execution>
@@ -142,5 +142,6 @@
             </plugin>
         </plugins>
     </build>
+    -->
 
 </project>
