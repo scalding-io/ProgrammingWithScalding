@@ -1,3 +1,4 @@
+import cascading.tuple.Fields
 import com.twitter.scalding._
 
 // groupBy example

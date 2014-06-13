@@ -20,6 +20,8 @@
             <artifactId>scalding-avro_2.10</artifactId>
             <version>${scalding.version}</version>
         </dependency>
+
+
         <dependency>
             <groupId>com.gensler</groupId>
             <artifactId>scalavro-core_2.10</artifactId>
@@ -30,6 +32,57 @@
             <artifactId>jerkson_2.10</artifactId>
             <version>0.6.3</version>
         </dependency>
+
+        <!-- PARQUET -->
+        <dependency>
+            <groupId>com.twitter</groupId>
+            <artifactId>parquet-common</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.twitter</groupId>
+            <artifactId>parquet-encoding</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.twitter</groupId>
+            <artifactId>parquet-column</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.twitter</groupId>
+            <artifactId>parquet-thrift</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.twitter</groupId>
+            <artifactId>parquet-cascading</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.twitter</groupId>
+            <artifactId>parquet-hadoop</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.twitter</groupId>
+            <artifactId>parquet-avro</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.twitter</groupId>
+            <artifactId>scalding-parquet_2.10</artifactId>
+            <version>0.10.0</version>
+        </dependency>
+        <dependency>
+            <groupId>cascading</groupId>
+            <artifactId>cascading-core</artifactId>
+            <version>2.5.4</version>
+        </dependency>
+
+
 
         <!-- Following libraries are for experimentaions
         <dependency>
