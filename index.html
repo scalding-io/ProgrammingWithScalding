@@ -1,82 +1,86 @@
 <!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <title>Programming Map Reduce With Scalding by scalding-io</title>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Programming Map Reduce With Scalding : Source code for PACKT Book &#39;Programming Map-Reduce With Scalding&#39;" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Programming Map Reduce With Scalding</title>
   </head>
 
   <body>
-    <div id="container">
-      <div class="inner">
 
-        <header>
-          <h1>Programming Map Reduce With Scalding</h1>
-          <h2>Source code for PACKT Book &#39;Programming Map-Reduce With Scalding&#39;</h2>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/scalding-io/ProgrammingWithScalding">View on GitHub</a>
+
+          <h1 id="project_title">Programming Map Reduce With Scalding</h1>
+          <h2 id="project_tagline">Source code for PACKT Book &#39;Programming Map-Reduce With Scalding&#39;</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/scalding-io/ProgrammingWithScalding/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/scalding-io/ProgrammingWithScalding/tarball/master">Download this project as a tar.gz file</a>
+            </section>
         </header>
+    </div>
 
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/scalding-io/ProgrammingMapReduceWithScalding/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/scalding-io/ProgrammingMapReduceWithScalding/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/scalding-io/ProgrammingMapReduceWithScalding" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>Source code for PACKT Book '<strong>Programming MapReduce With Scalding</strong>'</p>
 
-        <hr>
+<p align="center">
+  <a href="http://amazon.co.uk/dp/1783287012" target="_blank"><img src="http://dgdsbygo8mp3h.cloudfront.net/sites/default/files/imagecache/productview_larger/7017OS_mockupcover_normal.jpg"></a>
+</p>
 
-        <section id="main_content">
-          <p>Page <a href="http://scalding-io.github.io/ProgrammingMapReduceWithScalding/">http://scalding-io.github.io/ProgrammingMapReduceWithScalding/</a></p>
+<p>Find more information at <a href="http://scalding.io/">http://scalding.io/</a></p>
 
 <p>The book consists of 9 chapters </p>
 
 <ul>
-<li><p><strong>Hadoop and Abstractions</strong> - 
+<li><p><strong>Introduction to Map-Reduce</strong> - 
 Introduction to Hadoop, Map Reduce, Pipelining, Cascading, Pig and Hive.
 Chapter presents benefits of higher level abstractions of Map Reduce (concepts and capabilities).</p></li>
 <li><p><strong>Get ready for Scalding</strong> -
 Theory about Scalding - the Scala Domain Specific Language utilising Cascading. 
 Development environment setup including local hadoop cluster for development.
 Execute the first <code>Hello World</code> Scalding example.</p></li>
-<li><p><strong>Scalding reference examples</strong> -
+<li><p><strong>Scalding by example</strong> -
 The core capabilities of scalding: i) Map-like functions, ii) Grouping/reducing functions iii) Join operations </p></li>
-<li><p><strong>Advanced concepts-Intermediate examples</strong> -
+<li><p><strong>Intermediate examples</strong> -
 A Scalding log processing flow for a News company, aggregating multiple sources will be presented. 
 Through an example with multiple pipe-lines some more advanced concepts are presented.</p></li>
-<li><p><strong>Development Patterns and Best Practices</strong> -
-Presents interesting design patterns to overcome common issues and add more capabilities into Scalding.
-This chapter presents the External Operations pattern, the Dependency Injection pattern and the Late Bound Dependency pattern</p></li>
+<li><p><strong>Scalding Design Patterns</strong> -
+Interesting design patterns applicable to Scalding data processing applications. Using the 'External Operations' patters will enable us performing unit testing and structuring our applications in a modular way. </p></li>
 <li><p><strong>Testing &amp; TDD</strong> -
 Best practices of first defining behaviour (<em>Behaviour Driven Development</em>) then tests (<em>Test Driven Development</em>) and then completing the implementation. How to write unit, integration tests and also apply Black-box testing methodologies in the context of Big Data.</p></li>
-<li><p><strong>Running in Production</strong> -
-Introduction to Distributed Cache and Hadoop production system deployment and execution. 
-Handling multiple HDFS sources: text, avro, csv, etc. 
-How to monitor and maintain cluster stability.</p></li>
-<li><p><strong>External data stores</strong> -
-Interaction with external external SQL, NOSQL and in-memory applications like MemCache , Solr, ElasticSearch.
-Code for accessing SQL databases </p></li>
-<li><p><strong>Machine Learning</strong> - 
-Machine Learning and Recommendation systems - Pattern - PMML - Mahout.
-An example in Scalding for processing visits to an e-commerce site with Mahout/Pattern 
-to generate recommendations and store them into a real-time no-sql database.</p></li>
+<li><p><strong>Running Scalding in Production</strong> -
+Tips and tricks on how to execute and schedule jobs. Also how to co-ordinate the execution of Scalding/Scala/Java and even external system processes. Finally how to configure Scalding jobs using property files or Hadoop parameters, how to monitor and optimize jobs and other usefull tips.</p></li>
+<li><p><strong>Using external data stores</strong> -
+Interaction with external external SQL, NOSQL and in-memory applications like HBase, SQL, ElasticSearch etc.</p></li>
+<li><p><strong>Matrix Calculations and Machine Learning</strong> - 
+Matrix calculations using the Matrix API and algebird to calculate text similarity (TF-IDF) 
+and set similarity (Jaccard). Then another example on Mahout K-Means clustering and outlier detection.</p></li>
 </ul><h3>
 <a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
 <p>Antonios Antonios Chalkiopoulos (<a href="https://github.com/antwnis" class="user-mention">@antwnis</a>), Stefano Galarraga (<a href="https://github.com/galarragas" class="user-mention">@galarragas</a>).</p>
-        </section>
-
-        <footer>
-          Programming Map Reduce With Scalding is maintained by <a href="https://github.com/scalding-io">scalding-io</a><br>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
-
-        
-      </div>
+      </section>
     </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Programming Map Reduce With Scalding maintained by <a href="https://github.com/scalding-io">scalding-io</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
   </body>
 </html>
