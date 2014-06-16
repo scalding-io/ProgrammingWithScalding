@@ -13,8 +13,10 @@ class JobBase(args: Args) extends Job(args) {
   // Execute at instantiation
   mode match {
     case hadoop: HadoopMode => {
+      log.info("-Hadoop Mode-")
       getOptionalString("dependencies") foreach {
-        hadoopPath => JobLibLoader.loadJars(hadoopPath, AppConfig.jobConfig)
+        hadoopPath => log.info("dep" + hadoopPath)
+                      JobLibLoader.loadJars(hadoopPath, AppConfig.jobConfig)
       }
     }
     case _ => { log.info("In Local Mode") }

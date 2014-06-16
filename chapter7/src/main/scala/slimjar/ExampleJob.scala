@@ -9,7 +9,7 @@ import com.twitter.scalding._
 
   println("Running a slim jar")
 
-  val simpleExample = IterableSource[(Int)](List(1,2,3), ('num))
+  val simpleExample = Tsv("data/input/", 'num)
       .read
       .write(Tsv("data/output.tsv"))
 
