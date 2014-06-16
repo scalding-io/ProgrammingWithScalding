@@ -12,9 +12,10 @@ export HADOOP_CLASSPATH=$MAIN_JAR:$CP
 
 # The following block does not need to be executed every time
 # as our dependencies don't change frequently 
-hadoop fs -mkdir project1/libs/
-hadoop fs -rm project1/libs/*
-hadoop fs –put /alternateLocation/* project1/libs/
+hadoop fs -mkdir -p project1/libs/
+hadoop fs -rm -skipTrash project1/libs/*
+hadoop fs -put alternateLocation/* project1/libs/
+hadoop fs -put $MAIN_JAR project1/libs/
 
 # Runs : a Scalding Job | A Scala application | and then another Scalding Job
-java -cp $MAIN_JAR slimjar.ExampleJob --hdfs --dependencies project1/libs/
+hadoop jar $MAIN_JAR slimjar.JobRunner slimjar.ExampleJob --hdfs --dependencies project1/libs/ --heapInc
