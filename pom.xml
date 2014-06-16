@@ -332,7 +332,7 @@
                 <configuration>
                     <filesets>
                         <fileset>
-                            <directory>alternateLocation</directory>
+                            <directory>libs</directory>
                             <includes>
                                 <include>**/*</include>
                             </includes>
@@ -353,7 +353,7 @@
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>./alternateLocation</outputDirectory>
+                            <outputDirectory>libs</outputDirectory>
                             <overWriteReleases>false</overWriteReleases>
                             <overWriteSnapshots>false</overWriteSnapshots>
                             <overWriteIfNewer>true</overWriteIfNewer>
