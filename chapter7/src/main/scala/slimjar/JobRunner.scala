@@ -29,7 +29,7 @@ object JobRunner {
       Mode(args, conf) match {
         case hadoop: HadoopMode =>
           log.info("-Hadoop Mode-")
-          args.optional("dependencies") foreach { hadoopPath =>
+          args.optional("libjars") foreach { hadoopPath =>
             log.info("Distributed Cache location => " + hadoopPath)
             JobLibLoader.loadJars(hadoopPath, conf)
             conf.addResource(hadoopPath)

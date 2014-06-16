@@ -7,7 +7,7 @@ export DRIVEN_API_KEY=D991A15E7A174E098900CDEE4F3A3CA6
 MAIN_JAR=target/chapter7-0.jar
 
 # Aggregate all dependencies into the HADOOP_CLASSPATH
-for f in libs/*.jar; do CP=$f:$CP; done
+for f in libs/*.jar; do CP=$CP:$f; done
 export HADOOP_CLASSPATH=$MAIN_JAR:$CP
 
 # The following block does not need to be executed every time
@@ -18,4 +18,4 @@ hadoop fs -put libs/* project1/libs/
 hadoop fs -put $MAIN_JAR project1/libs/
 
 # Runs : a Scalding Job | A Scala application | and then another Scalding Job
-hadoop jar $MAIN_JAR slimjar.JobRunner slimjar.ExampleJob --hdfs --dependencies project1/libs/ --heapInc
+hadoop jar $MAIN_JAR slimjar.JobRunner slimjar.ExampleJob --hdfs --libjars project1/libs/ --heapInc
