@@ -17,7 +17,9 @@ class JobBase(args: Args) extends Job(args) {
       getOptionalString("dependencies") foreach {
         hadoopPath => log.info("dep" + hadoopPath)
                       JobLibLoader.loadJars(hadoopPath, AppConfig.jobConfig)
+        AppConfig.jobConfig.addResource(hadoopPath)
       }
+
     }
     case _ => { log.info("In Local Mode") }
   }
