@@ -5,7 +5,7 @@ import com.twitter.scalding._
 /**
  * Using JobBase we keep a single responsibility in this Job class
  */
- class ExampleJob(args: Args) extends JobBase (args) {
+ class ExampleJob(args: Args) extends Job(args) {
 
   println("Running a slim jar")
 
