@@ -19,5 +19,9 @@ project/plugins/project/
 alternateLocation/
 /chapter*/libs/
 libs/
+.settings/
+/chapter*/.cache
+/chapter*/.classpath
+/chapter*/.settings/
 /chapter*/data/output-*
 .DS_Store
