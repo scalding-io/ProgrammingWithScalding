@@ -17,5 +17,7 @@ project/plugins/project/
 
 /chapter*/alternateLocation/
 alternateLocation/
+/chapter*/libs/
+libs/
 /chapter*/data/output-*
 .DS_Store
