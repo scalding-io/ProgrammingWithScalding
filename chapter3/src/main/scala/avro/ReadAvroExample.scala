@@ -25,7 +25,7 @@ class ReadAvroExample(args: Args) extends Job(args) {
   val p1 = UnpackedAvroSource("data/avro/part-00000.avro")
     .read
     // We can access anything we need from the Schema automatically i.e.
-    // .map('name -> 'name2) { x:String => x+ " it works! "}
+     .map('name -> 'name2) { x:String => x+ " it works! "}
     // .debug
     .write(Tsv("data/from-avro/"))
 

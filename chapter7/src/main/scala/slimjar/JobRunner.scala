@@ -13,6 +13,8 @@ object JobRunner {
   }
 
   implicit class EnhancedConfiguration(val conf: Configuration) extends AnyRef {
+
+    // Method to increase the heap size in case the --heapInc parameter is used
     def increaseJvmHeap(args: Args) : Configuration = {
       if (args.boolean("heapInc")) {
         log.info("Setting JVM Memory/Heap Size for every child mapper and reducer")
@@ -25,7 +27,8 @@ object JobRunner {
       conf
     }
 
-  def addDependenciesToSharedChache(args: Args) : Configuration = {
+    // Method to load external libraries into the Distributed Cache
+    def addDependenciesToSharedChache(args: Args) : Configuration = {
       Mode(args, conf) match {
         case hadoop: HadoopMode =>
           log.info("-Hadoop Mode-")
@@ -38,6 +41,7 @@ object JobRunner {
       }
       conf
     }
+
   }
 
   def getJobConfig(args : Args): Configuration =
