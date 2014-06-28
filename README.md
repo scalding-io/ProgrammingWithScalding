@@ -1,7 +1,7 @@
 Source code for PACKT Book '**Programming MapReduce With Scalding**'
 
 <p align="center">
-  <a href="http://amazon.co.uk/dp/1783287012" target="_blank"><img src="http://dgdsbygo8mp3h.cloudfront.net/sites/default/files/imagecache/productview_larger/7017OS_mockupcover_normal.jpg"/></a>
+  <a href="http://amazon.co.uk/dp/1783287012" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51MkJExd88L._BO2,204,203,200_PIsitb-sticker-arrow-click,TopRight,35,-76_SX385_SY500_CR,0,0,385,500_SH20_OU02_.jpg" width="200"/></a>
 </p>
 
 Find more information at http://scalding.io/
