@@ -18,14 +18,6 @@
         <hadoop-lzo.version>0.4.16</hadoop-lzo.version>
     </properties>
 
-    <!--<repositories>-->
-        <!--<repository>-->
-            <!--<id>sonatype-oss-snap</id>-->
-            <!--<url>http://oss.sonatype.org/content/repositories/snapshots</url>-->
-            <!--<snapshots><enabled>true</enabled></snapshots>-->
-        <!--</repository>-->
-    <!--</repositories>-->
-
     <dependencies>
 
         <!-- HBase with SpyGlass -->
@@ -53,18 +45,19 @@
             <version>2.5.1</version>
         </dependency>
 
+        <!-- To enable the Hive connector -->
+        <dependency>
+            <groupId>io.scalding</groupId>
+            <artifactId>scalding-taps_2.10</artifactId>
+            <version>0.6</version>
+        </dependency>
+
         <!-- Scalding -->
         <dependency>
             <groupId>com.twitter</groupId>
             <artifactId>scalding-jdbc_${scala.scalding.version}</artifactId>
             <version>${scalding.version}</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>com.twitter</groupId>-->
-            <!--<artifactId>util_2.10</artifactId>-->
-            <!--<version>6.5.0</version>-->
-        <!--</dependency>-->
-
 
         <!-- Dependency for ElasticSearch connectivity -->
         <dependency>
@@ -73,6 +66,19 @@
             <version>2.0.0</version>
         </dependency>
 
+        <!-- ElasticSearch requires JSon - and Jackson is providing this capability -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+
+        <!-- Hadoop libs -->
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-core</artifactId>
@@ -87,17 +93,6 @@
             <groupId>com.hadoop.gplcompression</groupId>
             <artifactId>hadoop-lzo</artifactId>
             <version>${hadoop-lzo.version}</version>
-        </dependency>
-        <!-- ElasticSearch requires JSon - and Jackson is providing this capability -->
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-core-asl</artifactId>
-            <version>1.9.13</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.9.13</version>
         </dependency>
 
         <!-- Logging -->
