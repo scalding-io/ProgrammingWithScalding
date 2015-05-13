@@ -38,7 +38,7 @@ class LocalitySensitiveHashingSimilarity(args: Args) extends Job(args) {
 
   /*
    * Suppose we have a million of documents to compare. If we hash each document to 1 KByte
-   * the entrire data-set becomes just 1 GByte. However we still have half a trillion pairs of
+   * the entire data-set becomes just 1 GByte. However we still have half a trillion pairs of
    * documents to compare. As most often we are interested in the most similar pairs of all pairs, we
    * can set a threshold and focus only on pairs that are likely to be similar, without investigating
    * every pair.

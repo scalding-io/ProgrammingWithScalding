@@ -61,7 +61,7 @@ class SetSimilarity(args: Args) extends Job(args) {
     }
     .write(Tsv("data/output-Jaccard-step4-item-item-statistics.tsv"))
   /*
-   item-item-statistcs holds: pairs, popularity of pair and the popularity of each itemi.e.
+   item-item-statistics holds: pairs, popularity of pair and the popularity of each item i.e.
 
       item1	  item10	1	2	1
       item1	  item2	  2	2	2
