@@ -94,7 +94,7 @@ class DirectedGraphSimilarity(args: Args) extends Job(args) {
     .mapValues( pair => pair._2 )
 
   /**
-   * Final step is is to zip (outer-join) the intesection with the union matrix
+   * Final step is is to zip (outer-join) the intersection with the union matrix
    * The union matrix can easily be calculated as Doubles are in use
    */
   val unionMat = xMat + yMat - intersectMat
